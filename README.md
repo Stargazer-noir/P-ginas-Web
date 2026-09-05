@@ -46,39 +46,32 @@ shopify theme push --store tu-tienda.myshopify.com
 
 ## 2. El logo
 
-Las imágenes que compartiste llegan a esta sesión como contenido visual del
-chat, no como archivos descargables, así que no fue posible incrustar tu
-archivo .jpg original en el tema. En su lugar, se construyó **un tridente
-dorado propio en SVG** (inspirado en la cresta de Empoleon, con gradiente
-metálico y base tipo ola, ve `snippets/icon-trident.liquid`) que se muestra
-automáticamente junto al nombre "Emporeon" en el header, el footer y la
-página 404 — así que el logo **ya aparece en toda la plantilla**, no está en
-blanco.
-
-Si prefieres usar tu archivo .jpg/.png original en vez del tridente vectorial:
+El tema incluye un tridente dorado propio en SVG (`snippets/icon-trident.liquid`)
+que se muestra por defecto en el header, el footer y la página 404 mientras
+no subas tu propio archivo. Es solo un marcador de posición: en cuanto subas
+tu logo real lo reemplaza automáticamente.
 
 1. **Editor de temas → Configuración del tema → Logo** → sube tu imagen
-   (idealmente PNG o SVG con fondo transparente, ancho ≥ 600px). En cuanto
-   subas un archivo, reemplaza automáticamente al tridente vectorial.
+   (idealmente PNG o SVG con fondo transparente, ancho ≥ 600px).
 2. Ajusta el ancho con el control deslizante "Ancho del logo".
-3. Sube también el **favicon** (recorte cuadrado del tridente) en la misma
-   sección.
+3. Sube también el **favicon** en la misma sección.
 
 ## 3. Colores y tipografía
 
-Paleta oficial aplicada: **blanco, negro y azul oscuro** como base (header,
-footer, textos y botones), con el **dorado reservado para el logo y los
-acentos puntuales** (precios, íconos, línea de "sellos de confianza",
-botón principal) — igual que en el logo del tridente. Todo se controla sin
-tocar código desde **Editor de temas → Configuración del tema → Colores**:
+Paleta oficial: el **azul marino es el color oscuro principal** (header,
+footer, franja de sellos de confianza, boletín, botón oscuro), el **negro**
+se usa solo como acento puntual (texto sobre fondo dorado, profundidad de
+degradados), y el **dorado queda reservado para el logo y los acentos**
+(botón principal, precios, íconos). Todo se controla sin tocar código desde
+**Editor de temas → Configuración del tema → Colores**:
 
 | Variable | Uso | Valor por defecto |
 |---|---|---|
-| Negro | Header, footer, textos, botón oscuro | `#0B0C0F` |
-| Azul oscuro | Franja de estadísticas, acentos, hover | `#0F1F3A` |
-| Azul negro | Degradados y fondos profundos | `#060A12` |
+| Azul marino | Header, footer, sellos de confianza, boletín, botón oscuro | `#0F1F3A` |
+| Azul negro | Degradados, fondos profundos, hover del botón oscuro | `#060A12` |
+| Negro | Texto sobre dorado, acentos puntuales | `#0B0C0F` |
 | Dorado | Logo, botón principal, íconos, precios | `#C9A227` |
-| Blanco / gris muy claro | Fondos de contenido | `#FFFFFF` / `#F4F4F5` |
+| Blanco / gris azulado claro | Fondos de contenido | `#FFFFFF` / `#EEF1F6` |
 
 **Tipografía**: por defecto usa *Playfair Display* (encabezados, con
 serifa elegante) y *Assistant* (texto de cuerpo), configurable desde el

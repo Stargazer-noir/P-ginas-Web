@@ -46,7 +46,7 @@ button { font-family: inherit; cursor: pointer; }
   position: fixed;
   top: 1rem; left: 1rem;
   z-index: 999;
-  background: var(--color-black);
+  background: var(--color-navy);
   color: #fff;
   padding: 0.75em 1.25em;
   border-radius: 4px;
@@ -118,16 +118,16 @@ button { font-family: inherit; cursor: pointer; }
 
 .button--outline-dark {
   background: transparent;
-  color: var(--color-black);
-  border-color: var(--color-black);
+  color: var(--color-navy);
+  border-color: var(--color-navy);
 }
-.button--outline-dark:hover { border-color: var(--color-gold); color: var(--color-navy); }
+.button--outline-dark:hover { border-color: var(--color-gold); background: var(--color-navy); color: #fff; }
 
 .button--dark {
-  background: var(--color-black);
+  background: var(--color-navy);
   color: #fff;
 }
-.button--dark:hover { background: var(--color-navy); }
+.button--dark:hover { background: var(--color-navy-dark); }
 
 .button--full { width: 100%; }
 .button[disabled], .button.disabled {
@@ -175,7 +175,7 @@ button { font-family: inherit; cursor: pointer; }
    Header
    ========================================================================== */
 .site-header {
-  background: var(--color-black);
+  background: var(--color-navy);
   color: #fff;
   position: relative;
   z-index: 30;
@@ -372,7 +372,7 @@ button { font-family: inherit; cursor: pointer; }
    Trust badges
    ========================================================================== */
 .trust-badges {
-  background: var(--color-bg-muted);
+  background: var(--color-navy);
 }
 
 .trust-badges__grid {
@@ -393,18 +393,18 @@ button { font-family: inherit; cursor: pointer; }
   gap: 0.75rem;
   text-align: left;
   padding: 0.5rem 1.5rem;
-  border-right: 1px solid rgba(15,31,58,0.12);
+  border-right: 1px solid rgba(255,255,255,0.18);
 }
 .trust-badge:last-child { border-right: none; }
 
-.trust-badge .icon { width: 1.8rem; height: 1.8rem; color: var(--color-navy); flex-shrink: 0; }
+.trust-badge .icon { width: 1.8rem; height: 1.8rem; color: var(--color-gold); flex-shrink: 0; }
 
 .trust-badge__label {
   font-size: 0.72rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   font-weight: 700;
-  color: var(--color-navy-dark);
+  color: #fff;
   line-height: 1.3;
 }
 
@@ -566,7 +566,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 .product-form__swatches { display: flex; flex-wrap: wrap; gap: 0.6rem; }
 .product-form__swatch {
-  border: 1px solid #d7d3c8;
+  border: 1px solid #d5dbe4;
   border-radius: 2px;
   padding: 0.55em 1.1em;
   background: #fff;
@@ -584,7 +584,7 @@ button { font-family: inherit; cursor: pointer; }
 .quantity-selector {
   display: inline-flex;
   align-items: stretch;
-  border: 1px solid #d7d3c8;
+  border: 1px solid #d5dbe4;
   border-radius: 2px;
   overflow: hidden;
 }
@@ -599,8 +599,8 @@ button { font-family: inherit; cursor: pointer; }
 .quantity-selector input {
   width: 3rem;
   border: none;
-  border-left: 1px solid #d7d3c8;
-  border-right: 1px solid #d7d3c8;
+  border-left: 1px solid #d5dbe4;
+  border-right: 1px solid #d5dbe4;
   text-align: center;
   font-size: 1rem;
   -moz-appearance: textfield;
@@ -633,7 +633,7 @@ button { font-family: inherit; cursor: pointer; }
 .product-info__meta {
   margin-top: 2rem;
   padding-top: 1.5rem;
-  border-top: 1px solid #e7e3d8;
+  border-top: 1px solid #dfe4ec;
   font-size: 0.8rem;
   color: var(--color-text-light);
   display: flex;
@@ -642,8 +642,8 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 /* Accordion */
-.accordion { border-top: 1px solid #e7e3d8; }
-.accordion__item { border-bottom: 1px solid #e7e3d8; }
+.accordion { border-top: 1px solid #dfe4ec; }
+.accordion__item { border-bottom: 1px solid #dfe4ec; }
 .accordion__trigger {
   width: 100%;
   display: flex;
@@ -740,7 +740,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 @media (min-width: 750px) { .feature-grid { grid-template-columns: repeat(4, 1fr); gap: 1.5rem; } }
 .feature-card {
-  border: 1px solid #e7e3d8;
+  border: 1px solid #dfe4ec;
   border-radius: 6px;
   padding: 1.25rem;
   display: flex;
@@ -756,7 +756,7 @@ button { font-family: inherit; cursor: pointer; }
    Newsletter
    ========================================================================== */
 .newsletter {
-  background: var(--color-navy-dark);
+  background: var(--color-navy);
   color: #fff;
   text-align: center;
 }
@@ -776,7 +776,7 @@ button { font-family: inherit; cursor: pointer; }
 /* ==========================================================================
    Footer
    ========================================================================== */
-.site-footer { background: var(--color-black); color: rgba(255,255,255,0.85); }
+.site-footer { background: var(--color-navy); color: rgba(255,255,255,0.85); }
 .site-footer__top {
   display: grid;
   grid-template-columns: 1fr;
@@ -866,7 +866,7 @@ button { font-family: inherit; cursor: pointer; }
   align-items: center;
   justify-content: space-between;
   padding: 1.25rem 1.5rem;
-  border-bottom: 1px solid #e7e3d8;
+  border-bottom: 1px solid #dfe4ec;
 }
 .cart-drawer__header h2 { margin: 0; font-size: 1.1rem; }
 .cart-drawer__close { background: none; border: none; font-size: 1.4rem; line-height: 1; }
@@ -887,7 +887,7 @@ button { font-family: inherit; cursor: pointer; }
 .cart-line__remove { background: none; border: none; font-size: 0.72rem; text-decoration: underline; color: var(--color-text-light); padding: 0; }
 .cart-line__price { font-size: 0.9rem; text-align: right; white-space: nowrap; }
 
-.cart-drawer__footer { border-top: 1px solid #e7e3d8; padding: 1.25rem 1.5rem 1.5rem; }
+.cart-drawer__footer { border-top: 1px solid #dfe4ec; padding: 1.25rem 1.5rem 1.5rem; }
 .cart-drawer__subtotal { display: flex; justify-content: space-between; font-size: 1rem; margin-bottom: 1rem; font-weight: 700; }
 .cart-drawer__empty { text-align: center; padding: 3rem 1.5rem; color: var(--color-text-light); }
 
@@ -895,7 +895,7 @@ button { font-family: inherit; cursor: pointer; }
    Cart page
    ========================================================================== */
 .cart-page table { width: 100%; border-collapse: collapse; }
-.cart-page th { text-align: left; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-text-light); padding-bottom: 1rem; border-bottom: 1px solid #e7e3d8; }
+.cart-page th { text-align: left; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-text-light); padding-bottom: 1rem; border-bottom: 1px solid #dfe4ec; }
 .cart-page td { padding: 1.25rem 0.5rem; border-bottom: 1px solid #f0ede4; vertical-align: middle; }
 .cart-page__product { display: flex; gap: 1rem; align-items: center; }
 .cart-page__product img { width: 90px; height: 90px; object-fit: cover; border-radius: 4px; background: var(--color-bg-secondary); }
@@ -916,18 +916,26 @@ button { font-family: inherit; cursor: pointer; }
   .contact__layout { grid-template-columns: 0.8fr 1.2fr; }
 }
 
-.contact__info { display: flex; flex-direction: column; gap: 1.5rem; }
+.contact__info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background: var(--color-navy);
+  color: #fff;
+  padding: 2rem;
+  border-radius: 6px;
+}
 .contact-info-item { display: flex; align-items: flex-start; gap: 1rem; }
-.contact-info-item .icon { width: 1.4rem; height: 1.4rem; color: var(--color-navy); margin-top: 0.15em; flex-shrink: 0; }
+.contact-info-item .icon { width: 1.4rem; height: 1.4rem; color: var(--color-gold); margin-top: 0.15em; flex-shrink: 0; }
 .contact-info-item__label {
   display: block;
   font-size: 0.72rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--color-text-light);
+  color: rgba(255,255,255,0.6);
   margin-bottom: 0.2rem;
 }
-.contact-info-item__value { margin: 0; font-weight: 600; color: var(--color-black); }
+.contact-info-item__value { margin: 0; font-weight: 600; color: #fff; }
 
 .contact-form__row { margin-bottom: 1.1rem; }
 .contact-form__row label {
@@ -942,7 +950,7 @@ button { font-family: inherit; cursor: pointer; }
 .contact-form__row textarea {
   width: 100%;
   padding: 0.75em 0.9em;
-  border: 1px solid #d7d3c8;
+  border: 1px solid #d5dbe4;
   border-radius: 2px;
   font-family: inherit;
   font-size: 0.95rem;
