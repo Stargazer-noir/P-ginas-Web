@@ -10,7 +10,7 @@
           {%- elsif product.featured_media -%}
             <img id="ProductMainImage" src="{{ product.featured_media | image_url: width: 1000 }}" alt="{{ product.featured_media.alt | escape }}">
           {%- else -%}
-            {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+            {%- render 'placeholder-art', id: product.id -%}
           {%- endif -%}
         </div>
         {%- if product.media.size > 1 -%}

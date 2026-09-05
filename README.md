@@ -9,14 +9,16 @@ testimonios" mostrada en las referencias visuales de la marca.
 
 ```
 layout/         theme.liquid, password.liquid
-sections/       header, footer, hero, trust-badges, featured-collection,
-                brand-ethos, testimonials, stats, feature-grid, newsletter,
-                rich-text, main-product, main-collection-product-grid,
-                main-cart-items, main-page, main-404, main-search,
-                main-list-collections, main-password-header/footer
-snippets/       logo, product-card, price, cart-drawer, icon-*
-templates/      index, product, collection, page, cart, 404, search,
-                list-collections, password (todas en JSON, editables
+sections/       header, footer, hero, featured-product, trust-badges,
+                featured-collection, brand-ethos, testimonials, stats,
+                feature-grid, newsletter, contact, rich-text, main-product,
+                main-collection-product-grid, main-cart-items, main-page,
+                main-404, main-search, main-list-collections,
+                main-password-header/footer
+snippets/       logo, product-card, price, cart-drawer, placeholder-art,
+                icon-* (incluye icon-trident.liquid, el logo dorado)
+templates/      index, product, collection, page, page.contact, cart, 404,
+                search, list-collections, password (todas en JSON, editables
                 visualmente desde el editor de temas)
 assets/         base.css, global.js
 config/         settings_schema.json, settings_data.json
@@ -42,32 +44,45 @@ shopify theme dev --store tu-tienda.myshopify.com
 shopify theme push --store tu-tienda.myshopify.com
 ```
 
-## 2. Cargar tu logo real
+## 2. El logo
 
-Las imágenes que compartiste no llegaron como archivos descargables en esta
-sesión, así que el tema usa un **campo de logo configurable**: mientras no
-subas una imagen, se muestra automáticamente un ícono de tridente + el
-nombre de la tienda en tipografía serif dorada (ve `snippets/logo.liquid`).
+Las imágenes que compartiste llegan a esta sesión como contenido visual del
+chat, no como archivos descargables, así que no fue posible incrustar tu
+archivo .jpg original en el tema. En su lugar, se construyó **un tridente
+dorado propio en SVG** (inspirado en la cresta de Empoleon, con gradiente
+metálico y base tipo ola, ve `snippets/icon-trident.liquid`) que se muestra
+automáticamente junto al nombre "Emporeon" en el header, el footer y la
+página 404 — así que el logo **ya aparece en toda la plantilla**, no está en
+blanco.
 
-Para usar tu logo definitivo (el de fondo blanco con el tridente dorado y
-"EMPOREON" debajo):
+Si prefieres usar tu archivo .jpg/.png original en vez del tridente vectorial:
 
-1. **Editor de temas → Configuración del tema → Logo** → sube el archivo
-   (idealmente PNG o SVG con fondo transparente, ancho ≥ 600px).
+1. **Editor de temas → Configuración del tema → Logo** → sube tu imagen
+   (idealmente PNG o SVG con fondo transparente, ancho ≥ 600px). En cuanto
+   subas un archivo, reemplaza automáticamente al tridente vectorial.
 2. Ajusta el ancho con el control deslizante "Ancho del logo".
-3. Sube también el **favicon** (recorte cuadrado del tridente funciona
-   bien) en la misma sección.
+3. Sube también el **favicon** (recorte cuadrado del tridente) en la misma
+   sección.
 
 ## 3. Colores y tipografía
 
-Todo se controla desde **Editor de temas → Configuración del tema**:
+Paleta oficial aplicada: **blanco, negro y azul oscuro** como base (header,
+footer, textos y botones), con el **dorado reservado para el logo y los
+acentos puntuales** (precios, íconos, línea de "sellos de confianza",
+botón principal) — igual que en el logo del tridente. Todo se controla sin
+tocar código desde **Editor de temas → Configuración del tema → Colores**:
 
-- **Colores**: ya vienen precargados con la paleta de la referencia
-  (`#0F1F3A` azul marino, `#C9A227` dorado, fondos crema/blanco). Puedes
-  ajustarlos sin tocar código.
-- **Tipografía**: por defecto usa *Playfair Display* (encabezados, con
-  serifa elegante) y *Assistant* (texto de cuerpo). Se puede cambiar por
-  cualquier fuente de la librería de Shopify desde el mismo panel.
+| Variable | Uso | Valor por defecto |
+|---|---|---|
+| Negro | Header, footer, textos, botón oscuro | `#0B0C0F` |
+| Azul oscuro | Franja de estadísticas, acentos, hover | `#0F1F3A` |
+| Azul negro | Degradados y fondos profundos | `#060A12` |
+| Dorado | Logo, botón principal, íconos, precios | `#C9A227` |
+| Blanco / gris muy claro | Fondos de contenido | `#FFFFFF` / `#F4F4F5` |
+
+**Tipografía**: por defecto usa *Playfair Display* (encabezados, con
+serifa elegante) y *Assistant* (texto de cuerpo), configurable desde el
+mismo panel por cualquier fuente de la librería de Shopify.
 
 ## 4. Menús
 
@@ -103,15 +118,36 @@ frasco, con precio por 100g y bullets de beneficios):
 | Sección | Uso |
 |---|---|
 | Hero | Banner principal con imagen, texto y botón "Comprar Ahora" |
+| Producto destacado | Banner tipo "spotlight" con un producto real (imagen, precio, bullets y botón de agregar al carrito) |
 | Sellos de confianza | 3 íconos: pagos seguros, envío global, origen certificado |
-| Colección destacada | Grid de productos de una colección |
+| Colección destacada | Grid de productos de una colección (con 4 productos de muestra mientras no hay colección real) |
 | Ethos de marca | Imagen + texto (historia / estilo de vida) |
 | Testimonios | Tarjetas con estrellas, cita y autor |
-| Estadísticas | Franja de métricas estilo "89% / 92%" |
-| Cuadrícula de ingredientes | Iconos circulares + nombre (estilo "ingredientes estudiados") |
+| Estadísticas | Franja de métricas con valor + etiqueta + descripción breve, estilo "89% / 92%" |
+| Cuadrícula de ingredientes | Iconos circulares + nombre + descripción breve (estilo "ingredientes estudiados") |
 | Boletín | Formulario de suscripción |
+| Contacto | Datos de contacto (correo, teléfono, horario) + formulario nativo de Shopify |
 
-Todas se agregan/reordenan desde **Editor de temas → Agregar sección**.
+Todas se agregan/reordenan desde **Editor de temas → Agregar sección**. Ya
+vienen precargadas con contenido de ejemplo (textos, estadísticas,
+testimonios) para que la página no se sienta vacía apenas la instalas —
+edítalas o bórralas cuando tengas tu contenido real.
+
+### Página de Contacto
+
+Para usar la sección "Contacto" como una página real:
+
+1. **Tienda online → Páginas → Agregar página**, nómbrala "Contacto".
+2. En el panel derecho, en **Plantilla de tema**, elige `page.contact`.
+3. Edita los datos de contacto y el texto desde el editor de temas.
+
+### Imágenes y fotos de producto
+
+Mientras no subas tus propias fotos, cada espacio de imagen (producto,
+colección, banner) muestra un **panel de marca** (degradado azul oscuro→negro
+con el tridente dorado centrado) en vez de un recuadro gris vacío de
+Shopify — así ningún bloque se ve "roto" o en blanco antes de cargar tu
+contenido.
 
 ## 7. Carrito
 

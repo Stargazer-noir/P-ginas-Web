@@ -1,7 +1,9 @@
 {%- comment -%}
   Site logo: uses uploaded settings.logo image when present,
-  otherwise falls back to a trident icon + serif wordmark.
-  Accepts: class (string, optional extra class on wrapper)
+  otherwise falls back to the Emporeon trident mark + serif wordmark.
+  Accepts: class (string, optional extra class on wrapper),
+  id (string, unique per instance — pass a different value for the
+  header vs. footer vs. password page copies of this snippet)
 {%- endcomment -%}
 <span class="site-header__logo {{ class }}">
   {%- if settings.logo -%}
@@ -13,7 +15,7 @@
       loading="lazy"
     >
   {%- else -%}
-    {%- render 'icon-trident', class: 'site-header__logo-icon' -%}
+    {%- render 'icon-trident', class: 'site-header__logo-icon', id: id -%}
     <span class="site-header__wordmark">{{ shop.name | default: 'Emporeon' }}</span>
   {%- endif -%}
 </span>

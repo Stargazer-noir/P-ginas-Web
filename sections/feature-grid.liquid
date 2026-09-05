@@ -13,10 +13,15 @@
             {%- if block.settings.image -%}
               <img src="{{ block.settings.image | image_url: width: 120 }}" alt="{{ block.settings.title | escape }}" loading="lazy">
             {%- else -%}
-              {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+              {%- render 'placeholder-art', id: block.id -%}
             {%- endif -%}
           </div>
-          <span class="feature-card__title">{{ block.settings.title }}</span>
+          <div>
+            <span class="feature-card__title">{{ block.settings.title }}</span>
+            {%- if block.settings.text != blank -%}
+              <p class="feature-card__text">{{ block.settings.text }}</p>
+            {%- endif -%}
+          </div>
         </div>
       {%- endfor -%}
     </div>
@@ -36,7 +41,8 @@
       "name": "Ingrediente",
       "settings": [
         { "type": "image_picker", "id": "image", "label": "Imagen" },
-        { "type": "text", "id": "title", "label": "Nombre", "default": "L-Teanina" }
+        { "type": "text", "id": "title", "label": "Nombre", "default": "L-Teanina" },
+        { "type": "text", "id": "text", "label": "Descripción breve", "default": "Calma y enfoque sin somnolencia." }
       ]
     }
   ],
@@ -44,10 +50,10 @@
     {
       "name": "Cuadrícula de ingredientes",
       "blocks": [
-        { "type": "feature", "settings": { "title": "L-Teanina" } },
-        { "type": "feature", "settings": { "title": "Catequinas" } },
-        { "type": "feature", "settings": { "title": "Antioxidantes" } },
-        { "type": "feature", "settings": { "title": "Minerales de Altura" } }
+        { "type": "feature", "settings": { "title": "L-Teanina", "text": "Calma y enfoque sin somnolencia." } },
+        { "type": "feature", "settings": { "title": "Catequinas", "text": "Antioxidantes de hoja entera." } },
+        { "type": "feature", "settings": { "title": "Minerales de Altura", "text": "Absorbidos del suelo volcánico." } },
+        { "type": "feature", "settings": { "title": "Polifenoles", "text": "Apoyo metabólico natural." } }
       ]
     }
   ]

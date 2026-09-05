@@ -9,6 +9,18 @@
         "button_label": "Comprar Ahora"
       }
     },
+    "featured-product": {
+      "type": "featured-product",
+      "settings": {
+        "eyebrow": "Pieza Insignia"
+      },
+      "blocks": {
+        "h1": { "type": "highlight", "settings": { "text": "Potencia Antioxidante" } },
+        "h2": { "type": "highlight", "settings": { "text": "Optimización Metabólica" } },
+        "h3": { "type": "highlight", "settings": { "text": "Claridad y Enfoque" } }
+      },
+      "block_order": ["h1", "h2", "h3"]
+    },
     "trust-badges": {
       "type": "trust-badges",
       "blocks": {
@@ -50,10 +62,10 @@
     "stats": {
       "type": "stats",
       "blocks": {
-        "s1": { "type": "stat", "settings": { "value": "98%", "label": "Clientes que repiten su compra" } },
-        "s2": { "type": "stat", "settings": { "value": "4.9/5", "label": "Calificación promedio" } },
-        "s3": { "type": "stat", "settings": { "value": "30+", "label": "Países con envío asegurado" } },
-        "s4": { "type": "stat", "settings": { "value": "100%", "label": "Origen certificado" } }
+        "s1": { "type": "stat", "settings": { "value": "98%", "label": "Clientes que repiten su compra", "description": "Según encuestas post-compra." } },
+        "s2": { "type": "stat", "settings": { "value": "4.9/5", "label": "Calificación promedio", "description": "Basado en reseñas verificadas." } },
+        "s3": { "type": "stat", "settings": { "value": "30+", "label": "Países con envío asegurado", "description": "Con seguimiento en tiempo real." } },
+        "s4": { "type": "stat", "settings": { "value": "100%", "label": "Origen certificado", "description": "Trazabilidad de cada lote." } }
       },
       "block_order": ["s1", "s2", "s3", "s4"]
     },
@@ -61,5 +73,5 @@
       "type": "newsletter"
     }
   },
-  "order": ["hero", "trust-badges", "featured-collection", "brand-ethos", "testimonials", "stats", "newsletter"]
+  "order": ["hero", "featured-product", "trust-badges", "featured-collection", "brand-ethos", "testimonials", "stats", "newsletter"]
 }

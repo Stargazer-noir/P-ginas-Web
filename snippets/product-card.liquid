@@ -12,7 +12,7 @@
         height="{{ 600 | divided_by: card_product.featured_media.aspect_ratio | default: 750 }}"
       >
     {%- else -%}
-      {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+      {%- render 'placeholder-art', id: card_product.id -%}
     {%- endif -%}
 
     {%- if card_product.compare_at_price > card_product.price -%}

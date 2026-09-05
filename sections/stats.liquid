@@ -10,6 +10,9 @@
         <div {{ block.shopify_attributes }}>
           <div class="stat__value">{{ block.settings.value }}</div>
           <div class="stat__label">{{ block.settings.label }}</div>
+          {%- if block.settings.description != blank -%}
+            <p class="stat__description">{{ block.settings.description }}</p>
+          {%- endif -%}
         </div>
       {%- endfor -%}
     </div>
@@ -32,7 +35,8 @@
       "name": "Estadística",
       "settings": [
         { "type": "text", "id": "value", "label": "Valor", "default": "98%" },
-        { "type": "text", "id": "label", "label": "Etiqueta", "default": "Clientes que repiten su compra" }
+        { "type": "text", "id": "label", "label": "Etiqueta", "default": "Clientes que repiten su compra" },
+        { "type": "text", "id": "description", "label": "Descripción breve (opcional)", "default": "Según encuestas post-compra." }
       ]
     }
   ],
@@ -40,10 +44,10 @@
     {
       "name": "Estadísticas",
       "blocks": [
-        { "type": "stat", "settings": { "value": "98%", "label": "Clientes que repiten su compra" } },
-        { "type": "stat", "settings": { "value": "4.9/5", "label": "Calificación promedio" } },
-        { "type": "stat", "settings": { "value": "30+", "label": "Países con envío asegurado" } },
-        { "type": "stat", "settings": { "value": "100%", "label": "Origen certificado" } }
+        { "type": "stat", "settings": { "value": "98%", "label": "Clientes que repiten su compra", "description": "Según encuestas post-compra." } },
+        { "type": "stat", "settings": { "value": "4.9/5", "label": "Calificación promedio", "description": "Basado en reseñas verificadas." } },
+        { "type": "stat", "settings": { "value": "30+", "label": "Países con envío asegurado", "description": "Con seguimiento en tiempo real." } },
+        { "type": "stat", "settings": { "value": "100%", "label": "Origen certificado", "description": "Trazabilidad de cada lote." } }
       ]
     }
   ]

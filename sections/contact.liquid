@@ -1,0 +1,111 @@
+<section class="section-padding contact">
+  <div class="page-width">
+    <div class="section-heading">
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+      {%- endif -%}
+      <h1>{{ section.settings.heading }}</h1>
+      {%- if section.settings.text != blank -%}
+        <p>{{ section.settings.text }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="contact__layout">
+      <div class="contact__info">
+        {%- for block in section.blocks -%}
+          <div class="contact-info-item" {{ block.shopify_attributes }}>
+            {%- case block.settings.icon -%}
+              {%- when 'globe' -%}{%- render 'icon-globe' -%}
+              {%- when 'lock' -%}{%- render 'icon-lock' -%}
+              {%- when 'badge' -%}{%- render 'icon-badge' -%}
+              {%- else -%}{%- render 'icon-shield' -%}
+            {%- endcase -%}
+            <div>
+              <span class="contact-info-item__label">{{ block.settings.label }}</span>
+              <p class="contact-info-item__value">{{ block.settings.value }}</p>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+
+      <div class="contact__form">
+        {%- form 'contact', id: 'ContactForm' -%}
+          {%- if form.posted_successfully? -%}
+            <p class="contact-form__success">{{ section.settings.success_text }}</p>
+          {%- endif -%}
+          {%- if form.errors -%}
+            <p class="contact-form__error">{{ form.errors | default_errors }}</p>
+          {%- endif -%}
+
+          <div class="contact-form__row">
+            <label for="ContactFormName">{{ section.settings.name_label }}</label>
+            <input type="text" id="ContactFormName" name="contact[name]" value="{{ form.name }}" required>
+          </div>
+          <div class="contact-form__row">
+            <label for="ContactFormEmail">{{ section.settings.email_label }}</label>
+            <input type="email" id="ContactFormEmail" name="contact[email]" value="{{ form.email }}" spellcheck="false" autocomplete="email" required>
+          </div>
+          <div class="contact-form__row">
+            <label for="ContactFormPhone">{{ section.settings.phone_label }}</label>
+            <input type="tel" id="ContactFormPhone" name="contact[phone]" value="{{ form.phone }}" autocomplete="tel">
+          </div>
+          <div class="contact-form__row">
+            <label for="ContactFormMessage">{{ section.settings.message_label }}</label>
+            <textarea id="ContactFormMessage" name="contact[body]" rows="5" required>{{ form.body }}</textarea>
+          </div>
+
+          <button type="submit" class="button button--primary">{{ section.settings.submit_label }}</button>
+        {%- endform -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Contacto",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Texto pequeño superior", "default": "Estamos Aquí Para Ayudarte" },
+    { "type": "text", "id": "heading", "label": "Título", "default": "Contáctanos" },
+    { "type": "textarea", "id": "text", "label": "Texto", "default": "¿Dudas sobre un pedido, un origen o una colaboración? Escríbenos y un miembro de nuestro equipo te responderá en menos de 24 horas." },
+    { "type": "text", "id": "name_label", "label": "Etiqueta: nombre", "default": "Nombre" },
+    { "type": "text", "id": "email_label", "label": "Etiqueta: correo", "default": "Correo electrónico" },
+    { "type": "text", "id": "phone_label", "label": "Etiqueta: teléfono", "default": "Teléfono (opcional)" },
+    { "type": "text", "id": "message_label", "label": "Etiqueta: mensaje", "default": "Mensaje" },
+    { "type": "text", "id": "submit_label", "label": "Texto del botón", "default": "Enviar Mensaje" },
+    { "type": "text", "id": "success_text", "label": "Mensaje de éxito", "default": "Gracias por escribirnos. Te responderemos pronto." }
+  ],
+  "blocks": [
+    {
+      "type": "info",
+      "name": "Dato de contacto",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icono",
+          "options": [
+            { "value": "shield", "label": "Escudo" },
+            { "value": "globe", "label": "Globo" },
+            { "value": "lock", "label": "Candado" },
+            { "value": "badge", "label": "Medalla" }
+          ],
+          "default": "globe"
+        },
+        { "type": "text", "id": "label", "label": "Etiqueta", "default": "Correo" },
+        { "type": "text", "id": "value", "label": "Valor", "default": "hola@emporeon.com" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Contacto",
+      "blocks": [
+        { "type": "info", "settings": { "icon": "globe", "label": "Correo", "value": "hola@emporeon.com" } },
+        { "type": "info", "settings": { "icon": "shield", "label": "Teléfono", "value": "+1 (000) 000-0000" } },
+        { "type": "info", "settings": { "icon": "badge", "label": "Horario de atención", "value": "Lunes a viernes, 9:00–18:00" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

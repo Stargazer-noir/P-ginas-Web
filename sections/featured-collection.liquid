@@ -12,15 +12,19 @@
 
     <div class="product-grid grid-cols-{{ section.settings.columns }}">
       {%- assign collection_obj = collections[section.settings.collection] -%}
+      {%- assign sample_names = 'Amethyst Green Imperial,Midnight Oolong Reserve,Golden Peak White,Onyx Pu-erh Selection' | split: ',' -%}
+      {%- assign sample_prices = '95.00,88.00,110.00,79.00' | split: ',' -%}
       {%- for card_product in collection_obj.products limit: section.settings.products_to_show -%}
         {%- render 'product-card', card_product: card_product -%}
       {%- else -%}
         {%- for i in (1..section.settings.products_to_show) -%}
           <div class="product-card">
-            <div class="product-card__media">{{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}</div>
+            <div class="product-card__media">
+              {%- render 'placeholder-art', id: section.id | append: '-sample-' | append: i -%}
+            </div>
             <span class="product-card__vendor">Emporeon</span>
-            <h3 class="product-card__title">Muestra de Producto</h3>
-            <div class="product-card__price">$95.00</div>
+            <h3 class="product-card__title">{{ sample_names[forloop.index0] | default: 'Origen Selecto' }}</h3>
+            <div class="product-card__price">${{ sample_prices[forloop.index0] | default: '95.00' }}</div>
           </div>
         {%- endfor -%}
       {%- endfor -%}

@@ -10,7 +10,7 @@
             {%- if collection.featured_image -%}
               <img src="{{ collection.featured_image | image_url: width: 600 }}" alt="{{ collection.title | escape }}" loading="lazy">
             {%- else -%}
-              {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}
+              {%- render 'placeholder-art', id: collection.id -%}
             {%- endif -%}
           </div>
           <h3 class="product-card__title">{{ collection.title }}</h3>

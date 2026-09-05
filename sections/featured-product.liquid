@@ -1,0 +1,128 @@
+{%- liquid
+  assign featured = section.settings.product
+  if featured != blank
+    assign featured_variant = featured.selected_or_first_available_variant
+  endif
+-%}
+<section class="ethos {% if section.settings.layout == 'reverse' %}ethos--reverse{% endif %}">
+  <div class="ethos__media">
+    {%- if featured.featured_media -%}
+      <img
+        src="{{ featured.featured_media | image_url: width: 1200 }}"
+        alt="{{ featured.featured_media.alt | escape }}"
+        loading="lazy"
+      >
+    {%- else -%}
+      {%- render 'placeholder-art', id: section.id -%}
+    {%- endif -%}
+  </div>
+
+  <div class="ethos__content">
+    {%- if section.settings.eyebrow != blank -%}
+      <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+    {%- endif -%}
+
+    {%- if featured != blank -%}
+      {%- if featured.vendor != blank -%}
+        <span class="product-info__vendor">{{ featured.vendor }}</span>
+      {%- endif -%}
+      <h2>{{ featured.title }}</h2>
+      {%- if featured.metafields.custom.subtitle != blank -%}
+        <p class="product-info__subtitle">{{ featured.metafields.custom.subtitle }}</p>
+      {%- endif -%}
+
+      {%- if section.blocks.size > 0 -%}
+        <ul class="product-highlights">
+          {%- for block in section.blocks -%}
+            <li {{ block.shopify_attributes }}>
+              {%- render 'icon-badge' -%}
+              {{ block.settings.text }}
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+
+      <div class="product-info__price" style="margin-bottom:1.5rem;">
+        {{ featured_variant.price | money }}
+        {%- if featured.metafields.custom.unit_label != blank -%}
+          <span class="unit"> / {{ featured.metafields.custom.unit_label }}</span>
+        {%- endif -%}
+      </div>
+
+      {%- form 'product', featured, data-product-form: true -%}
+        <input type="hidden" name="id" value="{{ featured_variant.id }}">
+        <div class="product-form__buy-row">
+          <button type="submit" class="button button--primary product-form__submit" data-loading-text="…" {% unless featured_variant.available %}disabled{% endunless %}>
+            {%- if featured_variant.available -%}
+              {{ 'products.product.add_to_cart' | t }}
+            {%- else -%}
+              {{ 'products.product.sold_out' | t }}
+            {%- endif -%}
+          </button>
+          <a href="{{ featured.url }}" class="button button--outline-dark">
+            {{ 'products.product.view_details' | t }}
+          </a>
+        </div>
+        <p data-form-error hidden style="color:#b3261e; font-size:0.85rem; margin-top:0.75rem;"></p>
+      {%- endform -%}
+
+      <p class="secure-note">
+        {%- render 'icon-lock' -%}
+        {{ 'products.product.secure_checkout' | t }}
+      </p>
+    {%- else -%}
+      <span class="product-info__vendor">Emporeon</span>
+      <h2>Amethyst Green Imperial</h2>
+      <p class="product-info__subtitle">High-Altitude, Single-Origin</p>
+      <ul class="product-highlights">
+        <li>{%- render 'icon-badge' -%} Potencia Antioxidante</li>
+        <li>{%- render 'icon-badge' -%} Optimización Metabólica</li>
+        <li>{%- render 'icon-badge' -%} Claridad y Enfoque</li>
+      </ul>
+      <div class="product-info__price" style="margin-bottom:1.5rem;">$95.00 <span class="unit"> / 100g</span></div>
+      <a href="{{ routes.all_products_collection_url }}" class="button button--primary">{{ 'products.product.add_to_cart' | t }}</a>
+      <p style="font-size:0.75rem; color:var(--color-text-light); margin-top:1rem;">
+        Selecciona un producto real en la configuración de esta sección para activar el botón de compra.
+      </p>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Producto destacado",
+  "settings": [
+    { "type": "product", "id": "product", "label": "Producto" },
+    { "type": "text", "id": "eyebrow", "label": "Texto pequeño superior", "default": "Pieza Insignia" },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Posición de la imagen",
+      "options": [
+        { "value": "default", "label": "Izquierda" },
+        { "value": "reverse", "label": "Derecha" }
+      ],
+      "default": "default"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "highlight",
+      "name": "Destacado",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Texto", "default": "Potencia Antioxidante" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Producto destacado",
+      "blocks": [
+        { "type": "highlight", "settings": { "text": "Potencia Antioxidante" } },
+        { "type": "highlight", "settings": { "text": "Optimización Metabólica" } },
+        { "type": "highlight", "settings": { "text": "Claridad y Enfoque" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

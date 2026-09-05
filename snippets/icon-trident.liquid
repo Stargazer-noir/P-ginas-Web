@@ -1,13 +1,60 @@
 {%- comment -%}
-  Stylized trident mark used as a stand-in brand icon next to the wordmark.
-  Accepts: class (string)
+  Emporeon brand mark: a golden trident with a wave-flourish base and
+  ringed staff, echoing the crest motif of the original logo artwork.
+  Renders with a fixed metallic-gold gradient (brand mark, not a
+  currentColor icon) unless `mono: true` is passed, which uses
+  currentColor instead (for footer seals / single-color contexts).
+  Accepts: class (string), mono (boolean), id (string, unique per
+  instance on the page — required whenever more than one copy of this
+  icon can render on the same page, e.g. inside a product grid loop).
 {%- endcomment -%}
-<svg class="icon icon-trident {{ class }}" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-  <path d="M30 2h4l2 16-2 4h-4l-2-4 2-16z"/>
-  <path d="M18 8c4 2 7 7 8 13l-3 5c-5-1-9-5-10-11 2-3 3-5 5-7z"/>
-  <path d="M46 8c-4 2-7 7-8 13l3 5c5-1 9-5 10-11-2-3-3-5-5-7z"/>
-  <path d="M30 22h4v14h-4z"/>
-  <path d="M14 30c3-1 6-1 9 1l-2 4c-3 1-6 1-9-1 0-2 1-3 2-4z"/>
-  <path d="M50 30c-3-1-6-1-9 1l2 4c3 1 6 1 9-1 0-2-1-3-2-4z"/>
-  <path d="M28 36h8l2 4-2 6-3 3v13h-4V49l-3-3-2-6 2-4z"/>
+{%- liquid
+  assign gradient_id = id | default: 'brand'
+  assign gradient_id = 'emporeonGold-' | append: gradient_id
+-%}
+<svg
+  class="icon icon-trident {{ class }}"
+  viewBox="0 0 200 260"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true"
+  focusable="false"
+>
+  {%- unless mono -%}
+    <defs>
+      <linearGradient id="{{ gradient_id }}" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#F7E3A1"/>
+        <stop offset="45%" stop-color="#D4AF37"/>
+        <stop offset="100%" stop-color="#93701C"/>
+      </linearGradient>
+    </defs>
+  {%- endunless -%}
+
+  <g fill="{% if mono %}currentColor{% else %}url(#{{ gradient_id }}){% endif %}">
+    <!-- crossbar / base plate -->
+    <path d="M66,106 Q100,124 134,106 Q100,132 66,106 Z"/>
+    <!-- gems -->
+    <path d="M79,101 L84,106 L79,111 L74,106 Z"/>
+    <path d="M121,101 L126,106 L121,111 L116,106 Z"/>
+
+    <!-- wave flourish -->
+    <path d="M98,116 C80,120 58,117 46,130 C38,138 37,150 44,157 C53,150 60,140 76,136 C86,134 94,128 98,122 Z"/>
+    <path d="M102,116 C120,120 142,117 154,130 C162,138 163,150 156,157 C147,150 140,140 124,136 C114,134 106,128 102,122 Z"/>
+
+    <!-- center tine -->
+    <path d="M100,14 L110,66 L103,106 L97,106 L90,66 Z"/>
+    <!-- left tine -->
+    <g transform="rotate(-24 100 106)">
+      <path d="M100,24 L109,68 L103,106 L97,106 L91,68 Z"/>
+    </g>
+    <!-- right tine -->
+    <g transform="rotate(24 100 106)">
+      <path d="M100,24 L109,68 L103,106 L97,106 L91,68 Z"/>
+    </g>
+
+    <!-- staff -->
+    <path d="M95,132 L105,132 L104,224 L96,224 Z"/>
+    <rect x="90" y="208" width="20" height="5" rx="1.5"/>
+    <rect x="90" y="220" width="20" height="5" rx="1.5"/>
+    <path d="M88,229 L112,229 L107,246 L93,246 Z"/>
+  </g>
 </svg>

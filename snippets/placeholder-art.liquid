@@ -1,0 +1,13 @@
+{%- comment -%}
+  Branded empty-state artwork: a navy-to-black gradient panel with the
+  Emporeon trident mark centered. Used everywhere a product photo,
+  collection image or lifestyle photo hasn't been uploaded yet, instead
+  of Shopify's generic gray placeholder graphic — so unfinished sections
+  still look intentional rather than empty.
+  Must be placed inside a `position: relative` (or similar) container
+  that clips overflow, since this fills it with `position: absolute`.
+  Accepts: id (string, unique per instance on the page)
+{%- endcomment -%}
+<div class="placeholder-art">
+  {%- render 'icon-trident', class: 'placeholder-art__icon', id: id -%}
+</div>

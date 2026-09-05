@@ -1,0 +1,14 @@
+{
+  "sections": {
+    "main": {
+      "type": "contact",
+      "blocks": {
+        "i1": { "type": "info", "settings": { "icon": "globe", "label": "Correo", "value": "hola@emporeon.com" } },
+        "i2": { "type": "info", "settings": { "icon": "shield", "label": "Teléfono", "value": "+1 (000) 000-0000" } },
+        "i3": { "type": "info", "settings": { "icon": "badge", "label": "Horario de atención", "value": "Lunes a viernes, 9:00–18:00" } }
+      },
+      "block_order": ["i1", "i2", "i3"]
+    }
+  },
+  "order": ["main"]
+}
