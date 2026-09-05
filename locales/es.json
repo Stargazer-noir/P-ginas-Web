@@ -1,0 +1,129 @@
+{
+  "general": {
+    "meta": {
+      "tags": "Etiquetado \"{{ tags }}\"",
+      "page": "Página {{ page }}"
+    },
+    "search": {
+      "search": "Buscar",
+      "placeholder": "Busca en nuestra colección",
+      "submit": "Buscar",
+      "no_results": "No se encontraron resultados para \"{{ terms }}\"",
+      "results_with_count": {
+        "one": "{{ count }} resultado encontrado",
+        "other": "{{ count }} resultados encontrados"
+      }
+    },
+    "social": {
+      "share_on_facebook": "Compartir",
+      "share_on_twitter": "Twittear",
+      "share_on_pinterest": "Pinear"
+    },
+    "newsletter": {
+      "heading": "Únete al Ritual",
+      "text": "Sé el primero en conocer nuevos orígenes, cosechas limitadas y ofertas exclusivas.",
+      "placeholder": "Tu correo electrónico",
+      "submit": "Suscribirme",
+      "success": "Gracias por suscribirte."
+    },
+    "password_page": {
+      "login_form_heading": "Ingresa a la tienda con contraseña",
+      "login_password_button": "Ingresar con contraseña",
+      "login_form_password_label": "Contraseña",
+      "login_form_password_placeholder": "Tu contraseña",
+      "login_form_error": "Contraseña incorrecta.",
+      "login_form_submit": "Entrar",
+      "signup_form_email_label": "Correo electrónico",
+      "signup_form_success": "Te avisaremos cuando lancemos la tienda.",
+      "admin_link_html": "¿Eres el dueño de la tienda? <a href=\"/admin\" class=\"link underlined-link\">Inicia sesión aquí</a>"
+    },
+    "404": {
+      "title": "Página no encontrada",
+      "subtext": "La página que buscas no existe. Descubre nuestra colección.",
+      "link": "Seguir comprando"
+    },
+    "continue_shopping": "Seguir comprando"
+  },
+  "sections": {
+    "header": {
+      "menu": "Menú",
+      "cart_count": {
+        "one": "{{ count }} artículo",
+        "other": "{{ count }} artículos"
+      },
+      "announcement": "Envío de cortesía en pedidos mayores a $150"
+    },
+    "footer": {
+      "payment": "Aceptamos",
+      "certified": "Emporeon Seguro y Verificado",
+      "newsletter_heading": "Únete al Ritual"
+    },
+    "hero": {
+      "default_heading": "Emporeon. El Arte del Estatus Puro.",
+      "default_subheading": "Descubre Tu Ritual.",
+      "default_button": "Comprar Ahora"
+    },
+    "trust_badges": {
+      "secure_payments": "Pagos Encriptados y Seguros",
+      "global_shipping": "Envío Global Asegurado",
+      "certified_origin": "Origen Certificado"
+    },
+    "testimonials": {
+      "heading": "Por Qué Nuestro Círculo Confía en Emporeon"
+    },
+    "featured_collection": {
+      "view_all": "Ver todo"
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Agregar al Carrito",
+      "sold_out": "Agotado",
+      "unavailable": "No Disponible",
+      "on_sale": "Oferta",
+      "quantity": {
+        "label": "Cantidad"
+      },
+      "price": {
+        "from_price_html": "Desde {{ price }}"
+      },
+      "secure_checkout": "Pago Seguro",
+      "choose_options": "Elegir opciones",
+      "description": "Descripción",
+      "shipping_returns": "Envíos y Devoluciones",
+      "view_details": "Ver detalles",
+      "vendor": "Marca",
+      "sku": "SKU"
+    }
+  },
+  "collections": {
+    "general": {
+      "no_matches": "No se encontraron productos en esta colección",
+      "items_with_count": {
+        "one": "{{ count }} producto",
+        "other": "{{ count }} productos"
+      }
+    }
+  },
+  "cart": {
+    "general": {
+      "title": "Tu Carrito",
+      "note": "Nota del pedido",
+      "empty": "Tu carrito está vacío",
+      "subtotal": "Subtotal",
+      "checkout": "Pagar",
+      "close": "Cerrar",
+      "continue_shopping": "Seguir comprando",
+      "remove": "Eliminar",
+      "update": "Actualizar"
+    }
+  },
+  "accessibility": {
+    "close": "Cerrar",
+    "skip_to_content": "Ir al contenido",
+    "cart": "Carrito",
+    "search": "Buscar",
+    "menu": "Menú",
+    "star_reviews_info": "{{ rating_value }} de {{ rating_max }} estrellas"
+  }
+}

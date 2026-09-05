@@ -1,0 +1,21 @@
+{
+  "name": "Footer",
+  "type": "footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "shop": {
+          "type": "link_list",
+          "settings": { "heading": "Tienda", "menu": "footer" }
+        },
+        "help": {
+          "type": "link_list",
+          "settings": { "heading": "Ayuda", "menu": "footer" }
+        }
+      },
+      "block_order": ["shop", "help"]
+    }
+  },
+  "order": ["footer"]
+}

@@ -1,0 +1,65 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "eyebrow": "Colección de Origen Único",
+        "heading": "Emporeon. El Arte del Estatus Puro.",
+        "text": "Descubre tu ritual: té de alta montaña, cosechado y certificado para quienes exigen lo excepcional.",
+        "button_label": "Comprar Ahora"
+      }
+    },
+    "trust-badges": {
+      "type": "trust-badges",
+      "blocks": {
+        "badge-1": { "type": "badge", "settings": { "icon": "shield", "label": "Pagos Encriptados y Seguros" } },
+        "badge-2": { "type": "badge", "settings": { "icon": "globe", "label": "Envío Global Asegurado" } },
+        "badge-3": { "type": "badge", "settings": { "icon": "badge", "label": "Origen Certificado" } }
+      },
+      "block_order": ["badge-1", "badge-2", "badge-3"]
+    },
+    "featured-collection": {
+      "type": "featured-collection",
+      "settings": {
+        "eyebrow": "La Colección",
+        "heading": "Orígenes Selectos",
+        "text": "Cada lote es catado y certificado antes de llegar a tu mesa.",
+        "products_to_show": 4,
+        "columns": "4"
+      }
+    },
+    "brand-ethos": {
+      "type": "brand-ethos",
+      "settings": {
+        "eyebrow": "El Ethos Emporeon",
+        "heading": "Un Estilo de Vida de Salud Inquebrantable y Exclusividad",
+        "text": "Cada hoja se selecciona a mano en altitudes donde el aire es puro y el terreno, incomparable. No es solo té: es un ritual diario de disciplina y distinción.",
+        "layout": "default"
+      }
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "settings": { "heading": "Por Qué Nuestro Círculo Confía en Emporeon" },
+      "blocks": {
+        "t1": { "type": "testimonial", "settings": { "rating": 5, "quote": "La calidad y atención al detalle son incomparables. Este ritual se volvió parte de mi rutina diaria.", "author": "A. Johnson" } },
+        "t2": { "type": "testimonial", "settings": { "rating": 5, "quote": "Se nota el origen. Un sabor y una claridad mental que no había encontrado antes.", "author": "M. Reyes" } },
+        "t3": { "type": "testimonial", "settings": { "rating": 5, "quote": "El empaque, el aroma, el servicio: todo se siente exclusivo.", "author": "C. Duarte" } }
+      },
+      "block_order": ["t1", "t2", "t3"]
+    },
+    "stats": {
+      "type": "stats",
+      "blocks": {
+        "s1": { "type": "stat", "settings": { "value": "98%", "label": "Clientes que repiten su compra" } },
+        "s2": { "type": "stat", "settings": { "value": "4.9/5", "label": "Calificación promedio" } },
+        "s3": { "type": "stat", "settings": { "value": "30+", "label": "Países con envío asegurado" } },
+        "s4": { "type": "stat", "settings": { "value": "100%", "label": "Origen certificado" } }
+      },
+      "block_order": ["s1", "s2", "s3", "s4"]
+    },
+    "newsletter": {
+      "type": "newsletter"
+    }
+  },
+  "order": ["hero", "trust-badges", "featured-collection", "brand-ethos", "testimonials", "stats", "newsletter"]
+}

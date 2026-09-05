@@ -1,0 +1,27 @@
+<section class="newsletter section-padding">
+  <div class="page-width">
+    <h2>{{ section.settings.heading | default: 'general.newsletter.heading' | t }}</h2>
+    <p>{{ section.settings.text | default: 'general.newsletter.text' | t }}</p>
+    {%- form 'customer', id: 'NewsletterForm' -%}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      <input type="email" name="contact[email]" placeholder="{{ 'general.newsletter.placeholder' | t }}" required>
+      <button type="submit" class="button button--primary">{{ 'general.newsletter.submit' | t }}</button>
+      {%- if form.posted_successfully? -%}
+        <p style="color: var(--color-gold); margin-top:1rem; width:100%;">{{ 'general.newsletter.success' | t }}</p>
+      {%- endif -%}
+    {%- endform -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Boletín",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Título", "default": "Únete al Ritual" },
+    { "type": "textarea", "id": "text", "label": "Texto", "default": "Sé el primero en conocer nuevos orígenes, cosechas limitadas y ofertas exclusivas." }
+  ],
+  "presets": [
+    { "name": "Boletín" }
+  ]
+}
+{% endschema %}

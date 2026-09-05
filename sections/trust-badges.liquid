@@ -1,0 +1,54 @@
+<section class="trust-badges">
+  <div class="page-width">
+    <div class="trust-badges__grid">
+      {%- for block in section.blocks -%}
+        <div class="trust-badge" {{ block.shopify_attributes }}>
+          {%- case block.settings.icon -%}
+            {%- when 'shield' -%}{%- render 'icon-shield' -%}
+            {%- when 'globe' -%}{%- render 'icon-globe' -%}
+            {%- when 'badge' -%}{%- render 'icon-badge' -%}
+            {%- when 'lock' -%}{%- render 'icon-lock' -%}
+          {%- endcase -%}
+          <span class="trust-badge__label">{{ block.settings.label }}</span>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Sellos de confianza",
+  "blocks": [
+    {
+      "type": "badge",
+      "name": "Sello",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icono",
+          "options": [
+            { "value": "shield", "label": "Escudo" },
+            { "value": "globe", "label": "Globo" },
+            { "value": "badge", "label": "Medalla" },
+            { "value": "lock", "label": "Candado" }
+          ],
+          "default": "shield"
+        },
+        { "type": "text", "id": "label", "label": "Texto", "default": "Pagos Encriptados y Seguros" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sellos de confianza",
+      "blocks": [
+        { "type": "badge", "settings": { "icon": "shield", "label": "Pagos Encriptados y Seguros" } },
+        { "type": "badge", "settings": { "icon": "globe", "label": "Envío Global Asegurado" } },
+        { "type": "badge", "settings": { "icon": "badge", "label": "Origen Certificado" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

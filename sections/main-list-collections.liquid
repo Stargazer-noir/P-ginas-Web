@@ -1,0 +1,27 @@
+<section class="section-padding">
+  <div class="page-width">
+    <div class="collection-header">
+      <h1>{{ 'sections.featured_collection.view_all' | t }}</h1>
+    </div>
+    <div class="product-grid grid-cols-3">
+      {%- for collection in collections -%}
+        <a href="{{ collection.url }}" class="product-card">
+          <div class="product-card__media">
+            {%- if collection.featured_image -%}
+              <img src="{{ collection.featured_image | image_url: width: 600 }}" alt="{{ collection.title | escape }}" loading="lazy">
+            {%- else -%}
+              {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}
+            {%- endif -%}
+          </div>
+          <h3 class="product-card__title">{{ collection.title }}</h3>
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Lista de colecciones"
+}
+{% endschema %}

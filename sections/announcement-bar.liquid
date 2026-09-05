@@ -1,0 +1,20 @@
+<div class="announcement-bar">
+  {{ section.settings.text | default: 'sections.header.announcement' | t }}
+</div>
+
+{% schema %}
+{
+  "name": "Barra de anuncio",
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Texto",
+      "default": "Envío de cortesía en pedidos mayores a $150"
+    }
+  ],
+  "presets": [
+    { "name": "Barra de anuncio" }
+  ]
+}
+{% endschema %}

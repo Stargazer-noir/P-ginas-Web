@@ -1,0 +1,41 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "h1": { "type": "highlight", "settings": { "text": "Potencia Antioxidante" } },
+        "h2": { "type": "highlight", "settings": { "text": "Optimización Metabólica" } },
+        "h3": { "type": "highlight", "settings": { "text": "Claridad y Enfoque" } }
+      },
+      "block_order": ["h1", "h2", "h3"],
+      "settings": {
+        "shipping_text": "<p>Envío global asegurado. Devoluciones aceptadas dentro de los primeros 30 días si el producto no ha sido abierto.</p>"
+      }
+    },
+    "feature-grid": {
+      "type": "feature-grid",
+      "settings": {
+        "eyebrow": "Composición",
+        "heading": "Ingredientes Estudiados"
+      },
+      "blocks": {
+        "f1": { "type": "feature", "settings": { "title": "L-Teanina" } },
+        "f2": { "type": "feature", "settings": { "title": "Catequinas" } },
+        "f3": { "type": "feature", "settings": { "title": "Antioxidantes" } },
+        "f4": { "type": "feature", "settings": { "title": "Minerales de Altura" } }
+      },
+      "block_order": ["f1", "f2", "f3", "f4"]
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "settings": { "heading": "Por Qué Nuestro Círculo Confía en Emporeon" },
+      "blocks": {
+        "t1": { "type": "testimonial", "settings": { "rating": 5, "quote": "Se nota el origen. Un sabor y una claridad mental que no había encontrado antes.", "author": "M. Reyes" } },
+        "t2": { "type": "testimonial", "settings": { "rating": 5, "quote": "El empaque, el aroma, el servicio: todo se siente exclusivo.", "author": "C. Duarte" } },
+        "t3": { "type": "testimonial", "settings": { "rating": 5, "quote": "Mi ritual matutino favorito, sin excepción.", "author": "L. Fernández" } }
+      },
+      "block_order": ["t1", "t2", "t3"]
+    }
+  },
+  "order": ["main", "feature-grid", "testimonials"]
+}

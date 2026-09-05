@@ -1,0 +1,32 @@
+{%- comment -%}
+  Accepts: card_product (product object)
+{%- endcomment -%}
+<a href="{{ card_product.url }}" class="product-card" aria-label="{{ card_product.title }}">
+  <div class="product-card__media">
+    {%- if card_product.featured_media -%}
+      <img
+        src="{{ card_product.featured_media | image_url: width: 600 }}"
+        alt="{{ card_product.featured_media.alt | escape }}"
+        loading="lazy"
+        width="600"
+        height="{{ 600 | divided_by: card_product.featured_media.aspect_ratio | default: 750 }}"
+      >
+    {%- else -%}
+      {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+    {%- endif -%}
+
+    {%- if card_product.compare_at_price > card_product.price -%}
+      <span class="product-card__badge">{{ 'products.product.on_sale' | t }}</span>
+    {%- elsif card_product.available == false -%}
+      <span class="product-card__badge">{{ 'products.product.sold_out' | t }}</span>
+    {%- endif -%}
+  </div>
+
+  {%- if card_product.vendor -%}
+    <span class="product-card__vendor">{{ card_product.vendor }}</span>
+  {%- endif -%}
+  <h3 class="product-card__title">{{ card_product.title }}</h3>
+  <div class="product-card__price">
+    {%- render 'price', target: card_product -%}
+  </div>
+</a>

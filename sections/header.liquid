@@ -1,0 +1,64 @@
+<header class="site-header" data-header>
+  <div class="page-width site-header__inner">
+    <button type="button" class="site-header__icon-btn mobile-menu-toggle" data-mobile-menu-toggle aria-label="{{ 'accessibility.menu' | t }}">
+      {%- render 'icon-menu' -%}
+    </button>
+
+    <a href="{{ routes.root_url }}">
+      {%- render 'logo' -%}
+    </a>
+
+    {%- if section.settings.menu != blank -%}
+      <ul class="site-nav">
+        {%- for link in section.settings.menu.links -%}
+          <li>
+            <a href="{{ link.url }}"{% if link.active %} aria-current="page"{% endif %}>{{ link.title }}</a>
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+
+    <div class="site-header__icons">
+      <button type="button" class="site-header__icon-btn" data-search-toggle aria-label="{{ 'general.search.search' | t }}">
+        {%- render 'icon-search' -%}
+      </button>
+      <a href="{{ routes.account_url }}" class="site-header__icon-btn" aria-label="Account">
+        <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c1.2-4 4-6 7-6s5.8 2 7 6" stroke-linecap="round"/></svg>
+      </a>
+      <button type="button" class="site-header__icon-btn" data-cart-drawer-open aria-label="{{ 'accessibility.cart' | t }}">
+        {%- render 'icon-cart' -%}
+        <span class="cart-count-bubble" data-cart-count {% if cart.item_count == 0 %}hidden{% endif %}>{{ cart.item_count }}</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="search-bar" data-search-bar>
+    <form action="{{ routes.search_url }}" method="get" class="page-width" role="search">
+      <input type="search" name="q" placeholder="{{ 'general.search.placeholder' | t }}" value="{{ search.terms | escape }}">
+      <button type="submit" class="button button--primary">{{ 'general.search.submit' | t }}</button>
+    </form>
+  </div>
+
+  <nav class="mobile-nav" data-mobile-nav>
+    {%- if section.settings.menu != blank -%}
+      {%- for link in section.settings.menu.links -%}
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      {%- endfor -%}
+    {%- endif -%}
+    <a href="{{ routes.account_url }}">{{ 'customer.account.title' | t: default: 'Account' }}</a>
+  </nav>
+</header>
+
+{% schema %}
+{
+  "name": "Encabezado",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menú",
+      "default": "main-menu"
+    }
+  ]
+}
+{% endschema %}

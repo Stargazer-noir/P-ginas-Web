@@ -1,0 +1,167 @@
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+
+<section class="product-section">
+  <div class="page-width">
+    <div class="product-layout">
+      <div class="product-gallery">
+        <div class="product-gallery__main">
+          {%- if current_variant.featured_media -%}
+            <img id="ProductMainImage" src="{{ current_variant.featured_media | image_url: width: 1000 }}" alt="{{ current_variant.featured_media.alt | escape }}">
+          {%- elsif product.featured_media -%}
+            <img id="ProductMainImage" src="{{ product.featured_media | image_url: width: 1000 }}" alt="{{ product.featured_media.alt | escape }}">
+          {%- else -%}
+            {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+          {%- endif -%}
+        </div>
+        {%- if product.media.size > 1 -%}
+          <div class="product-gallery__thumbs">
+            {%- for media in product.media limit: 5 -%}
+              <button
+                type="button"
+                class="product-gallery__thumb {% if forloop.first %}is-active{% endif %}"
+                data-full="{{ media | image_url: width: 1000 }}"
+                onclick="document.getElementById('ProductMainImage').src=this.dataset.full; this.parentElement.querySelectorAll('.product-gallery__thumb').forEach(function(t){t.classList.remove('is-active')}); this.classList.add('is-active');"
+              >
+                <img src="{{ media | image_url: width: 200 }}" alt="{{ media.alt | escape }}" loading="lazy">
+              </button>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="product-info">
+        {%- if product.vendor != blank -%}
+          <span class="product-info__vendor">{{ product.vendor }}</span>
+        {%- endif -%}
+        <h1 class="product-info__title">{{ product.title }}</h1>
+        {%- if product.metafields.custom.subtitle != blank -%}
+          <p class="product-info__subtitle">{{ product.metafields.custom.subtitle }}</p>
+        {%- endif -%}
+
+        <div class="product-info__price">
+          <span data-product-price>{{ current_variant.price | money }}</span>
+          {%- if product.metafields.custom.unit_label != blank -%}
+            <span class="unit"> / {{ product.metafields.custom.unit_label }}</span>
+          {%- endif -%}
+        </div>
+
+        {%- if section.blocks.size > 0 -%}
+          <ul class="product-highlights">
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'highlight' -%}
+                <li {{ block.shopify_attributes }}>
+                  {%- render 'icon-badge' -%}
+                  {{ block.settings.text }}
+                </li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+
+        {%- form 'product', product, data-product-form: true -%}
+          <input type="hidden" name="id" value="{{ current_variant.id }}">
+          <script type="application/json" data-product-variants>{{ product.variants | json }}</script>
+
+          {%- unless product.has_only_default_variant -%}
+            {%- for option in product.options_with_values -%}
+              <fieldset class="product-form__option">
+                <legend>{{ option.name }}</legend>
+                <div class="product-form__swatches">
+                  {%- for value in option.values -%}
+                    <label class="product-form__swatch">
+                      <input
+                        type="radio"
+                        name="option-{{ option.position }}"
+                        value="{{ value | escape }}"
+                        data-variant-input
+                        {% if option.selected_value == value %}checked{% endif %}
+                      >
+                      {{ value }}
+                    </label>
+                  {%- endfor -%}
+                </div>
+              </fieldset>
+            {%- endfor -%}
+          {%- endunless -%}
+
+          <div class="product-form__buy-row">
+            <div class="quantity-selector">
+              <button type="button" data-quantity-change="decrease" aria-label="-">&minus;</button>
+              <input type="number" name="quantity" value="1" min="1" step="1" aria-label="{{ 'products.product.quantity.label' | t }}">
+              <button type="button" data-quantity-change="increase" aria-label="+">+</button>
+            </div>
+
+            <button
+              type="submit"
+              class="button button--primary product-form__submit"
+              data-loading-text="…"
+              {% unless current_variant.available %}disabled{% endunless %}
+            >
+              {%- if current_variant.available -%}
+                {{ 'products.product.add_to_cart' | t }}
+              {%- else -%}
+                {{ 'products.product.sold_out' | t }}
+              {%- endif -%}
+            </button>
+          </div>
+
+          <p class="secure-note">
+            {%- render 'icon-lock' -%}
+            {{ 'products.product.secure_checkout' | t }}
+          </p>
+
+          <p data-form-error hidden style="color:#b3261e; font-size:0.85rem; margin-top:0.75rem;"></p>
+        {%- endform -%}
+
+        <div class="accordion">
+          {%- if product.description != blank -%}
+            <div class="accordion__item">
+              <button type="button" class="accordion__trigger">
+                {{ 'products.product.description' | t }}
+                {%- render 'icon-plus' -%}
+              </button>
+              <div class="accordion__panel">{{ product.description }}</div>
+            </div>
+          {%- endif -%}
+          {%- if section.settings.shipping_text != blank -%}
+            <div class="accordion__item">
+              <button type="button" class="accordion__trigger">
+                {{ 'products.product.shipping_returns' | t }}
+                {%- render 'icon-plus' -%}
+              </button>
+              <div class="accordion__panel">{{ section.settings.shipping_text }}</div>
+            </div>
+          {%- endif -%}
+        </div>
+
+        <div class="product-info__meta">
+          {%- if current_variant.sku != blank -%}<span>{{ 'products.product.sku' | t }}: {{ current_variant.sku }}</span>{%- endif -%}
+          {%- if product.vendor != blank -%}<span>{{ 'products.product.vendor' | t }}: {{ product.vendor }}</span>{%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Página de producto",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "shipping_text",
+      "label": "Texto de envíos y devoluciones",
+      "default": "<p>Envío global asegurado. Devoluciones aceptadas dentro de los primeros 30 días si el producto no ha sido abierto.</p>"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "highlight",
+      "name": "Destacado",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Texto", "default": "Potencia antioxidante" }
+      ]
+    }
+  ]
+}
+{% endschema %}

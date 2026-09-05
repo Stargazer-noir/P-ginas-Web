@@ -1,0 +1,55 @@
+<section class="section-padding" style="background: var(--color-bg-secondary);">
+  <div class="page-width">
+    <div class="section-heading">
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+      {%- endif -%}
+      <h2>{{ section.settings.heading }}</h2>
+    </div>
+    <div class="feature-grid">
+      {%- for block in section.blocks -%}
+        <div class="feature-card" {{ block.shopify_attributes }}>
+          <div class="feature-card__media">
+            {%- if block.settings.image -%}
+              <img src="{{ block.settings.image | image_url: width: 120 }}" alt="{{ block.settings.title | escape }}" loading="lazy">
+            {%- else -%}
+              {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+            {%- endif -%}
+          </div>
+          <span class="feature-card__title">{{ block.settings.title }}</span>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Cuadrícula de ingredientes",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Texto pequeño superior", "default": "Composición" },
+    { "type": "text", "id": "heading", "label": "Título", "default": "Ingredientes Estudiados" }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Ingrediente",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Imagen" },
+        { "type": "text", "id": "title", "label": "Nombre", "default": "L-Teanina" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cuadrícula de ingredientes",
+      "blocks": [
+        { "type": "feature", "settings": { "title": "L-Teanina" } },
+        { "type": "feature", "settings": { "title": "Catequinas" } },
+        { "type": "feature", "settings": { "title": "Antioxidantes" } },
+        { "type": "feature", "settings": { "title": "Minerales de Altura" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

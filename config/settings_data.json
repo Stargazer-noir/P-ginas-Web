@@ -1,0 +1,23 @@
+{
+  "current": {
+    "logo_width": 150,
+    "color_navy": "#0F1F3A",
+    "color_navy_dark": "#0A1628",
+    "color_gold": "#C9A227",
+    "color_gold_light": "#E7C766",
+    "color_bg": "#FFFFFF",
+    "color_bg_secondary": "#F4F2EC",
+    "color_bg_muted": "#AEBBC9",
+    "color_text": "#1A1D24",
+    "color_text_light": "#5B6270",
+    "type_header_font": "playfair-display_n7",
+    "type_body_font": "assistant_n4",
+    "page_width": 1280,
+    "social_instagram": "https://instagram.com",
+    "social_facebook": "https://facebook.com",
+    "social_tiktok": "https://tiktok.com",
+    "cart_type": "drawer",
+    "cart_show_note": true
+  },
+  "presets": {}
+}

@@ -1,0 +1,87 @@
+<!doctype html>
+<html class="no-js" lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="{{ settings.color_navy }}">
+  <link rel="canonical" href="{{ canonical_url }}">
+
+  {%- if settings.favicon -%}
+    <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+  {%- endif -%}
+
+  <title>
+    {{ page_title }}
+    {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
+    {%- if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif -%}
+    {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+  </title>
+
+  {%- if page_description -%}
+    <meta name="description" content="{{ page_description | escape }}">
+  {%- endif -%}
+
+  {{ content_for_header }}
+
+  {{ 'base.css' | asset_url | stylesheet_tag }}
+  {{ settings.type_header_font | font_face: font_display: 'swap' }}
+  {{ settings.type_body_font | font_face: font_display: 'swap' }}
+
+  <style>
+    :root {
+      --color-navy: {{ settings.color_navy }};
+      --color-navy-dark: {{ settings.color_navy_dark }};
+      --color-gold: {{ settings.color_gold }};
+      --color-gold-light: {{ settings.color_gold_light }};
+      --color-bg: {{ settings.color_bg }};
+      --color-bg-secondary: {{ settings.color_bg_secondary }};
+      --color-bg-muted: {{ settings.color_bg_muted }};
+      --color-text: {{ settings.color_text }};
+      --color-text-light: {{ settings.color_text_light }};
+      --font-heading: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }};
+      --font-heading-style: {{ settings.type_header_font.style }};
+      --font-heading-weight: {{ settings.type_header_font.weight }};
+      --font-body: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
+      --font-body-style: {{ settings.type_body_font.style }};
+      --font-body-weight: {{ settings.type_body_font.weight }};
+      --page-width: {{ settings.page_width }}px;
+      --logo-width: {{ settings.logo_width }}px;
+    }
+  </style>
+
+  <script>
+    window.themeMoneyFormat = {{ shop.money_format | json }};
+    window.themeStrings = {
+      addToCart: {{ 'products.product.add_to_cart' | t | json }},
+      soldOut: {{ 'products.product.sold_out' | t | json }},
+      remove: {{ 'cart.general.remove' | t | json }}
+    };
+  </script>
+  <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
+
+  {% comment %} Shopify meta {% endcomment %}
+  <meta name="generator" content="Shopify">
+</head>
+
+<body class="template-{{ request.page_type | handleize }}" data-cart-type="{{ settings.cart_type }}">
+  <a class="skip-to-content-link visually-hidden" href="#MainContent">
+    {{ 'accessibility.skip_to_content' | t }}
+  </a>
+
+  {% sections 'header-group' %}
+
+  <main id="MainContent" class="content-for-layout" role="main" tabindex="-1">
+    {{ content_for_layout }}
+  </main>
+
+  {% sections 'footer-group' %}
+
+  {%- if settings.cart_type == 'drawer' -%}
+    {% render 'cart-drawer' %}
+  {%- endif -%}
+
+  <ul hidden>
+    <li id="a11y-refresh-page-message">Choosing a selection results in a full page refresh.</li>
+  </ul>
+</body>
+</html>
