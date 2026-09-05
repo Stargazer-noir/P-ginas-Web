@@ -1,8 +1,13 @@
-<section class="section-padding">
+<section class="collection-banner">
   <div class="page-width">
     <div class="collection-header">
       <h1>{{ 'sections.featured_collection.view_all' | t }}</h1>
     </div>
+  </div>
+</section>
+
+<section class="section-padding">
+  <div class="page-width">
     <div class="product-grid grid-cols-3">
       {%- for collection in collections -%}
         <a href="{{ collection.url }}" class="product-card">
@@ -13,7 +18,9 @@
               {%- render 'placeholder-art', id: collection.id -%}
             {%- endif -%}
           </div>
-          <h3 class="product-card__title">{{ collection.title }}</h3>
+          <div class="product-card__body">
+            <h3 class="product-card__title">{{ collection.title }}</h3>
+          </div>
         </a>
       {%- endfor -%}
     </div>

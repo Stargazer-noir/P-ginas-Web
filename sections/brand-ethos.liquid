@@ -1,4 +1,4 @@
-<section class="ethos {% if section.settings.layout == 'reverse' %}ethos--reverse{% endif %}">
+<section class="ethos {% if section.settings.layout == 'reverse' %}ethos--reverse{% endif %} {% if section.settings.style == 'dark' %}ethos--dark{% endif %}">
   <div class="ethos__media">
     {%- if section.settings.image -%}
       <img src="{{ section.settings.image | image_url: width: 1200 }}" alt="{{ section.settings.image.alt | escape }}" loading="lazy">
@@ -13,7 +13,7 @@
     <h2>{{ section.settings.heading }}</h2>
     <p>{{ section.settings.text }}</p>
     {%- if section.settings.button_label != blank -%}
-      <a href="{{ section.settings.button_link | default: '#' }}" class="button button--dark" style="margin-top:1rem;">
+      <a href="{{ section.settings.button_link | default: '#' }}" class="button button--primary" style="margin-top:1rem;">
         {{ section.settings.button_label }}
       </a>
     {%- endif -%}
@@ -25,6 +25,16 @@
   "name": "Ethos de marca",
   "settings": [
     { "type": "image_picker", "id": "image", "label": "Imagen" },
+    {
+      "type": "select",
+      "id": "style",
+      "label": "Estilo de fondo",
+      "options": [
+        { "value": "dark", "label": "Azul noche (recomendado)" },
+        { "value": "light", "label": "Claro" }
+      ],
+      "default": "dark"
+    },
     {
       "type": "select",
       "id": "layout",

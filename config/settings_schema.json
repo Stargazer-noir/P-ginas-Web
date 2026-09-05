@@ -43,24 +43,30 @@
       },
       {
         "type": "paragraph",
-        "content": "Paleta oficial: blanco, negro y azul oscuro como base, con el dorado del tridente reservado para el logo y acentos puntuales (botones, íconos, líneas)."
+        "content": "Paleta oficial estilo luxury: azul noche como color dominante en la mayoría de las secciones, gris grafito y negro como acentos oscuros, y dorado (el color del tridente) reservado para el logo, botones y detalles que deben llamar la atención."
       },
       {
         "type": "color",
         "id": "color_black",
-        "label": "Negro (encabezado / pie de página)",
+        "label": "Negro (acentos, texto sobre dorado)",
         "default": "#0B0C0F"
       },
       {
         "type": "color",
+        "id": "color_charcoal",
+        "label": "Gris grafito (barra de anuncio, acentos)",
+        "default": "#262B35"
+      },
+      {
+        "type": "color",
         "id": "color_navy",
-        "label": "Azul oscuro (secciones de acento)",
+        "label": "Azul noche (color dominante: header, footer, secciones)",
         "default": "#0F1F3A"
       },
       {
         "type": "color",
         "id": "color_navy_dark",
-        "label": "Azul negro (degradados / fondos profundos)",
+        "label": "Azul noche profundo (secciones a pantalla completa, degradados)",
         "default": "#060A12"
       },
       {

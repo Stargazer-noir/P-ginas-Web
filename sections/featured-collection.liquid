@@ -1,4 +1,4 @@
-<section class="section-padding">
+<section class="section-padding section-dark">
   <div class="page-width">
     <div class="section-heading">
       {%- if section.settings.eyebrow != blank -%}
@@ -22,9 +22,11 @@
             <div class="product-card__media">
               {%- render 'placeholder-art', id: section.id | append: '-sample-' | append: i -%}
             </div>
-            <span class="product-card__vendor">Emporeon</span>
-            <h3 class="product-card__title">{{ sample_names[forloop.index0] | default: 'Origen Selecto' }}</h3>
-            <div class="product-card__price">${{ sample_prices[forloop.index0] | default: '95.00' }}</div>
+            <div class="product-card__body">
+              <span class="product-card__vendor">Emporeon</span>
+              <h3 class="product-card__title">{{ sample_names[forloop.index0] | default: 'Origen Selecto' }}</h3>
+              <div class="product-card__price">${{ sample_prices[forloop.index0] | default: '95.00' }}</div>
+            </div>
           </div>
         {%- endfor -%}
       {%- endfor -%}
@@ -32,7 +34,7 @@
 
     {%- if collection_obj != blank -%}
       <div style="text-align:center; margin-top:2.5rem;">
-        <a href="{{ collection_obj.url }}" class="button button--dark">{{ 'sections.featured_collection.view_all' | t }}</a>
+        <a href="{{ collection_obj.url }}" class="button button--primary">{{ 'sections.featured_collection.view_all' | t }}</a>
       </div>
     {%- endif -%}
   </div>

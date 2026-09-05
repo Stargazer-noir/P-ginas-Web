@@ -4,7 +4,7 @@
     assign featured_variant = featured.selected_or_first_available_variant
   endif
 -%}
-<section class="ethos {% if section.settings.layout == 'reverse' %}ethos--reverse{% endif %}">
+<section class="ethos ethos--dark {% if section.settings.layout == 'reverse' %}ethos--reverse{% endif %}">
   <div class="ethos__media">
     {%- if featured.featured_media -%}
       <img
@@ -59,7 +59,7 @@
               {{ 'products.product.sold_out' | t }}
             {%- endif -%}
           </button>
-          <a href="{{ featured.url }}" class="button button--outline-dark">
+          <a href="{{ featured.url }}" class="button button--secondary">
             {{ 'products.product.view_details' | t }}
           </a>
         </div>
@@ -81,7 +81,7 @@
       </ul>
       <div class="product-info__price" style="margin-bottom:1.5rem;">$95.00 <span class="unit"> / 100g</span></div>
       <a href="{{ routes.all_products_collection_url }}" class="button button--primary">{{ 'products.product.add_to_cart' | t }}</a>
-      <p style="font-size:0.75rem; color:var(--color-text-light); margin-top:1rem;">
+      <p style="font-size:0.75rem; color:rgba(255,255,255,0.55); margin-top:1rem;">
         Selecciona un producto real en la configuración de esta sección para activar el botón de compra.
       </p>
     {%- endif -%}

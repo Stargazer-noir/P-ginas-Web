@@ -22,11 +22,13 @@
     {%- endif -%}
   </div>
 
-  {%- if card_product.vendor -%}
-    <span class="product-card__vendor">{{ card_product.vendor }}</span>
-  {%- endif -%}
-  <h3 class="product-card__title">{{ card_product.title }}</h3>
-  <div class="product-card__price">
-    {%- render 'price', target: card_product -%}
+  <div class="product-card__body">
+    {%- if card_product.vendor -%}
+      <span class="product-card__vendor">{{ card_product.vendor }}</span>
+    {%- endif -%}
+    <h3 class="product-card__title">{{ card_product.title }}</h3>
+    <div class="product-card__price">
+      {%- render 'price', target: card_product -%}
+    </div>
   </div>
 </a>

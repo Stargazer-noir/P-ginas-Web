@@ -1,4 +1,4 @@
-<section class="section-padding">
+<section class="collection-banner">
   <div class="page-width">
     <div class="collection-header">
       <span class="eyebrow">{{ 'sections.featured_collection.view_all' | t }}</span>
@@ -7,7 +7,11 @@
         <div class="rich-text" style="margin-top:0.75rem;">{{ collection.description }}</div>
       {%- endif -%}
     </div>
+  </div>
+</section>
 
+<section class="section-padding">
+  <div class="page-width">
     {%- paginate collection.products by section.settings.products_per_page -%}
       {%- if collection.products.size > 0 -%}
         <div class="product-grid grid-cols-{{ section.settings.columns }}">

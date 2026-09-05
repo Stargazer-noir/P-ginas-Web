@@ -58,20 +58,30 @@ tu logo real lo reemplaza automáticamente.
 
 ## 3. Colores y tipografía
 
-Paleta oficial: el **azul marino es el color oscuro principal** (header,
-footer, franja de sellos de confianza, boletín, botón oscuro), el **negro**
-se usa solo como acento puntual (texto sobre fondo dorado, profundidad de
-degradados), y el **dorado queda reservado para el logo y los acentos**
-(botón principal, precios, íconos). Todo se controla sin tocar código desde
-**Editor de temas → Configuración del tema → Colores**:
+Paleta estilo **luxury**: el **azul noche es el color dominante en la mayoría
+de las secciones** (no solo el header/footer) — hero, producto destacado,
+colección destacada, ethos de marca, testimonios e ingredientes usan fondos
+azul noche o azul noche profundo a pantalla completa, con las tarjetas de
+producto/testimonios flotando en blanco para que resalten como piezas de
+exhibición. El **gris grafito** viste la barra de anuncio y el **negro** se
+usa como acento puntual (texto sobre dorado, profundidad de degradados). El
+**dorado** —el color del logo— se reserva para el botón principal, precios,
+íconos, la línea decorativa bajo los títulos y otros detalles que deben
+llamar la atención y generar impulso de compra. Todo se controla sin tocar
+código desde **Editor de temas → Configuración del tema → Colores**:
 
 | Variable | Uso | Valor por defecto |
 |---|---|---|
-| Azul marino | Header, footer, sellos de confianza, boletín, botón oscuro | `#0F1F3A` |
-| Azul negro | Degradados, fondos profundos, hover del botón oscuro | `#060A12` |
+| Azul noche | Header, footer, hero, producto destacado, sellos, boletín, botón oscuro | `#0F1F3A` |
+| Azul noche profundo | Colección destacada, banner de colección, degradados | `#060A12` |
+| Gris grafito | Barra de anuncio | `#262B35` |
 | Negro | Texto sobre dorado, acentos puntuales | `#0B0C0F` |
-| Dorado | Logo, botón principal, íconos, precios | `#C9A227` |
-| Blanco / gris azulado claro | Fondos de contenido | `#FFFFFF` / `#EEF1F6` |
+| Dorado | Logo, botón principal, precios, íconos, línea decorativa | `#C9A227` |
+| Blanco / gris azulado claro | Tarjetas de producto/testimonios, fondos de formularios | `#FFFFFF` / `#EEF1F6` |
+
+La sección "Ethos de marca" tiene un control **Estilo de fondo** (Azul noche
+/ Claro) por si en algún punto quieres una sección más clara para dar
+respiro visual entre bloques oscuros — por defecto viene en azul noche.
 
 **Tipografía**: por defecto usa *Playfair Display* (encabezados, con
 serifa elegante) y *Assistant* (texto de cuerpo), configurable desde el

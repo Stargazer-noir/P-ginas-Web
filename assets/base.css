@@ -85,6 +85,26 @@ button { font-family: inherit; cursor: pointer; }
 
 .section-heading h2 { font-size: clamp(1.6rem, 3vw, 2.4rem); }
 .section-heading p { color: var(--color-text-light); margin-top: 0.75rem; }
+.section-heading::after {
+  content: '';
+  display: block;
+  width: 44px;
+  height: 2px;
+  background: var(--color-gold);
+  margin: 1.1rem auto 0;
+}
+
+/* Dark ("night blue") section treatment — used for the storefront's
+   luxury dark bands (spotlight, featured collection, ethos, testimonials,
+   ingredients) so gold/navy/black carry most of the page, not just the
+   header and footer. */
+.section-dark { background: var(--color-navy-dark); color: rgba(255,255,255,0.78); }
+.section-dark h1, .section-dark h2, .section-dark h3 { color: #fff; }
+.section-dark .section-heading p { color: rgba(255,255,255,0.68); }
+/* White product/feature tiles inside a dark section keep their own dark
+   text — the heading-color rule above must not bleed into their titles. */
+.section-dark .product-card__title,
+.section-dark .feature-card__title { color: var(--color-black); }
 
 /* Buttons ---------------------------------------------------------------- */
 .button {
@@ -116,13 +136,6 @@ button { font-family: inherit; cursor: pointer; }
 }
 .button--secondary:hover { border-color: var(--color-gold); color: var(--color-gold); }
 
-.button--outline-dark {
-  background: transparent;
-  color: var(--color-navy);
-  border-color: var(--color-navy);
-}
-.button--outline-dark:hover { border-color: var(--color-gold); background: var(--color-navy); color: #fff; }
-
 .button--dark {
   background: var(--color-navy);
   color: #fff;
@@ -149,8 +162,8 @@ button { font-family: inherit; cursor: pointer; }
    Announcement bar
    ========================================================================== */
 .announcement-bar {
-  background: var(--color-navy-dark);
-  color: #fff;
+  background: var(--color-charcoal);
+  color: var(--color-gold-light);
   text-align: center;
   font-size: 0.72rem;
   letter-spacing: 0.15em;
@@ -421,15 +434,26 @@ button { font-family: inherit; cursor: pointer; }
   .product-grid { grid-template-columns: repeat(var(--grid-cols, 4), 1fr); gap: 2rem 1.5rem; }
 }
 
-.product-card { text-decoration: none; color: inherit; display: block; }
+.product-card {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  background: #fff;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(6,10,18,0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(201,162,39,0.22);
+}
 
 .product-card__media {
   position: relative;
   aspect-ratio: 4/5;
   overflow: hidden;
   background: var(--color-bg-secondary);
-  border-radius: 4px;
-  margin-bottom: 1rem;
 }
 
 .product-card__media img {
@@ -449,6 +473,8 @@ button { font-family: inherit; cursor: pointer; }
   padding: 0.35em 0.75em;
   border-radius: 2px;
 }
+
+.product-card__body { padding: 1rem 1.1rem 1.25rem; }
 
 .product-card__vendor {
   font-size: 0.68rem;
@@ -474,6 +500,15 @@ button { font-family: inherit; cursor: pointer; }
   text-align: center;
   padding: 3rem 0 2rem;
 }
+
+.collection-banner {
+  background: var(--color-navy-dark);
+  padding: 3.5rem 0;
+}
+.collection-banner .collection-header { padding: 0; }
+.collection-banner h1 { color: #fff; }
+.collection-banner .eyebrow { color: var(--color-gold); }
+.collection-banner .rich-text { color: rgba(255,255,255,0.72); }
 
 /* ==========================================================================
    Product page
@@ -675,7 +710,7 @@ button { font-family: inherit; cursor: pointer; }
 .ethos {
   display: grid;
   grid-template-columns: 1fr;
-  align-items: center;
+  align-items: stretch;
 }
 @media (min-width: 750px) {
   .ethos { grid-template-columns: 1fr 1fr; }
@@ -684,15 +719,24 @@ button { font-family: inherit; cursor: pointer; }
 }
 .ethos__media { position: relative; aspect-ratio: 4/3; overflow: hidden; }
 .ethos__media img { width: 100%; height: 100%; object-fit: cover; }
-.ethos__content { padding: 2.5rem 1.5rem; }
+.ethos__content { padding: 2.5rem 1.5rem; display: flex; flex-direction: column; justify-content: center; }
 @media (min-width: 750px) { .ethos__content { padding: 3rem 4rem; } }
 .ethos__content h2 { font-size: clamp(1.5rem, 3vw, 2.1rem); }
 .ethos__content p { color: var(--color-text-light); }
 
+.ethos--dark .ethos__content { background: var(--color-navy); }
+.ethos--dark .ethos__content h2 { color: #fff; }
+.ethos--dark .ethos__content p { color: rgba(255,255,255,0.72); }
+.ethos--dark .product-info__subtitle { color: rgba(255,255,255,0.72); }
+.ethos--dark .product-info__price { color: var(--color-gold); }
+.ethos--dark .product-info__price .unit { color: rgba(255,255,255,0.6); }
+.ethos--dark .product-highlights li { color: #fff; }
+.ethos--dark .secure-note .icon { color: var(--color-gold); }
+
 /* ==========================================================================
    Testimonials
    ========================================================================== */
-.testimonials { background: var(--color-bg-secondary); }
+.testimonials { background: var(--color-navy); }
 .testimonials__grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -705,8 +749,10 @@ button { font-family: inherit; cursor: pointer; }
   background: #fff;
   padding: 2rem;
   border-radius: 4px;
-  box-shadow: 0 1px 3px rgba(15,31,58,0.08);
+  box-shadow: 0 4px 16px rgba(6,10,18,0.18);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
+.testimonial-card:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(201,162,39,0.25); }
 .testimonial-card__stars { color: var(--color-gold); letter-spacing: 0.15em; margin-bottom: 1rem; font-size: 0.9rem; }
 .testimonial-card__quote { font-style: italic; color: var(--color-navy-dark); margin-bottom: 1rem; }
 .testimonial-card__author { font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-text-light); }
@@ -740,13 +786,16 @@ button { font-family: inherit; cursor: pointer; }
 }
 @media (min-width: 750px) { .feature-grid { grid-template-columns: repeat(4, 1fr); gap: 1.5rem; } }
 .feature-card {
-  border: 1px solid #dfe4ec;
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(6,10,18,0.12);
   border-radius: 6px;
   padding: 1.25rem;
   display: flex;
   align-items: center;
   gap: 1rem;
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
 }
+.feature-card:hover { box-shadow: 0 10px 24px rgba(201,162,39,0.25); transform: translateY(-3px); }
 .feature-card__media { position: relative; width: 3.25rem; height: 3.25rem; border-radius: 50%; overflow: hidden; flex-shrink: 0; background: var(--color-bg-secondary); }
 .feature-card__media img { width: 100%; height: 100%; object-fit: cover; }
 .feature-card__title { font-size: 0.85rem; font-weight: 700; color: var(--color-black); display: block; margin-bottom: 0.2rem; }
