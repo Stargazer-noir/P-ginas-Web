@@ -18,25 +18,31 @@
         {%- render 'product-card', card_product: card_product -%}
       {%- else -%}
         {%- for i in (1..section.settings.products_to_show) -%}
-          <div class="product-card">
+          <a href="{{ routes.all_products_collection_url }}" class="product-card">
             <div class="product-card__media">
               {%- render 'placeholder-art', id: section.id | append: '-sample-' | append: i -%}
+              <span class="product-card__badge">Muestra</span>
             </div>
             <div class="product-card__body">
               <span class="product-card__vendor">Emporeon</span>
               <h3 class="product-card__title">{{ sample_names[forloop.index0] | default: 'Origen Selecto' }}</h3>
               <div class="product-card__price">${{ sample_prices[forloop.index0] | default: '95.00' }}</div>
             </div>
-          </div>
+          </a>
         {%- endfor -%}
       {%- endfor -%}
     </div>
 
-    {%- if collection_obj != blank -%}
-      <div style="text-align:center; margin-top:2.5rem;">
+    <div style="text-align:center; margin-top:2.5rem;">
+      {%- if collection_obj != blank -%}
         <a href="{{ collection_obj.url }}" class="button button--primary">{{ 'sections.featured_collection.view_all' | t }}</a>
-      </div>
-    {%- endif -%}
+      {%- else -%}
+        <a href="{{ routes.all_products_collection_url }}" class="button button--primary">{{ 'sections.featured_collection.view_all' | t }}</a>
+        <p style="font-size:0.75rem; color:rgba(255,255,255,0.5); margin-top:1rem;">
+          Elige una colección real en la configuración de esta sección para reemplazar los productos de muestra.
+        </p>
+      {%- endif -%}
+    </div>
   </div>
 </section>
 

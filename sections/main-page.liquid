@@ -1,9 +1,82 @@
+{%- assign handle_lower = page.handle | downcase -%}
+{%- assign is_contact_page = false -%}
+{%- if handle_lower contains 'contact' or handle_lower contains 'contacto' -%}
+  {%- assign is_contact_page = true -%}
+{%- endif -%}
+
 <section class="section-padding">
   <div class="page-width page-content">
     <h1 style="text-align:center;">{{ page.title }}</h1>
-    <div>{{ page.content }}</div>
+    {%- if page.content != blank -%}
+      <div>{{ page.content }}</div>
+    {%- endif -%}
   </div>
 </section>
+
+{%- if is_contact_page -%}
+  <section class="section-padding" style="padding-top:0;">
+    <div class="page-width">
+      <div class="contact__layout">
+        <div class="contact__info">
+          <div class="contact-info-item">
+            {%- render 'icon-globe' -%}
+            <div>
+              <span class="contact-info-item__label">Correo</span>
+              <p class="contact-info-item__value">hola@emporeon.com</p>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            {%- render 'icon-shield' -%}
+            <div>
+              <span class="contact-info-item__label">Teléfono</span>
+              <p class="contact-info-item__value">+1 (000) 000-0000</p>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            {%- render 'icon-badge' -%}
+            <div>
+              <span class="contact-info-item__label">Horario de atención</span>
+              <p class="contact-info-item__value">Lunes a viernes, 9:00–18:00</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact__form">
+          {%- form 'contact', id: 'ContactFormFallback' -%}
+            {%- if form.posted_successfully? -%}
+              <p class="contact-form__success">Gracias por escribirnos. Te responderemos pronto.</p>
+            {%- endif -%}
+            {%- if form.errors -%}
+              <p class="contact-form__error">{{ form.errors | default_errors }}</p>
+            {%- endif -%}
+
+            <div class="contact-form__row">
+              <label for="ContactFallbackName">Nombre</label>
+              <input type="text" id="ContactFallbackName" name="contact[name]" value="{{ form.name }}" required>
+            </div>
+            <div class="contact-form__row">
+              <label for="ContactFallbackEmail">Correo electrónico</label>
+              <input type="email" id="ContactFallbackEmail" name="contact[email]" value="{{ form.email }}" spellcheck="false" autocomplete="email" required>
+            </div>
+            <div class="contact-form__row">
+              <label for="ContactFallbackMessage">Mensaje</label>
+              <textarea id="ContactFallbackMessage" name="contact[body]" rows="5" required>{{ form.body }}</textarea>
+            </div>
+
+            <button type="submit" class="button button--primary">Enviar Mensaje</button>
+          {%- endform -%}
+        </div>
+      </div>
+
+      <p style="text-align:center; font-size:0.75rem; color:var(--color-text-light); margin-top:2rem;">
+        Esta información de contacto es de muestra. Edítala desde
+        <strong>Editor de temas → Contacto</strong> asignando a esta página la plantilla
+        <strong>page.contact</strong>, o reemplaza el texto directamente en el código de
+        <code>sections/main-page.liquid</code>.
+      </p>
+    </div>
+  </section>
+{%- endif -%}
 
 {% schema %}
 {

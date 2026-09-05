@@ -5,6 +5,18 @@ inspirada en el logo del tridente dorado, la paleta azul marino + dorado, y la
 estructura de página tipo "hero + sellos de confianza + producto destacado +
 testimonios" mostrada en las referencias visuales de la marca.
 
+> ⚠️ **Importante — esto NO se actualiza solo en tu tienda.** Este repositorio
+> de GitHub y tu tienda de Shopify (emporion.site) son dos cosas separadas.
+> Subir cambios aquí **no** cambia nada en Shopify automáticamente. Cada vez
+> que se actualice este tema tienes que:
+> 1. Descargar el ZIP más reciente de esta rama (ver sección 1 abajo).
+> 2. Subirlo en **Tienda online → Temas → Agregar tema → Subir archivo zip**.
+> 3. **Publicar** ese tema (si no lo publicas, solo queda como "borrador" /
+>    vista previa y tu tienda pública sigue mostrando lo de antes).
+>
+> Si tu sitio en vivo se sigue viendo igual después de un cambio, lo primero
+> a revisar es: ¿subiste el ZIP nuevo? ¿le diste clic a "Publicar"?
+
 ## Contenido del tema
 
 ```
@@ -164,6 +176,40 @@ El tema viene en inglés (idioma por defecto, acorde al copy de marca de
 las referencias: "The Art of Pure Status") y español (`locales/es.json`).
 Actívalo en **Configuración → Idiomas** dentro del admin de Shopify si
 quieres que las visitantes vean la tienda en español.
+
+## 9. Solución de problemas comunes
+
+**"No se ven los colores, todo blanco":** casi siempre es porque la tienda
+sigue mostrando una versión anterior del tema. Verifica que subiste el
+último ZIP y que lo **publicaste** (ver aviso al inicio de este documento).
+Si ya lo hiciste y sigue en blanco, revisa en el editor de temas que las
+secciones de la portada (Hero, Producto destacado, Colección destacada,
+Ethos, Testimonios, Estadísticas) sigan presentes en `index.json` — si
+alguien las borró desde el editor visual, vuelve a agregarlas con "Agregar
+sección".
+
+**"Los botones de Agregar al Carrito no se pueden presionar":** las
+secciones "Producto destacado" y "Colección destacada" muestran **contenido
+de muestra** (marcado con la etiqueta "Muestra") mientras no elijas un
+producto/colección real en su configuración — ese contenido de muestra
+enlaza a la página de productos, pero no puede agregar al carrito porque no
+existe un producto real detrás. En cuanto crees un producto y lo asignes a
+la sección (o a una colección), el botón agrega al carrito de verdad. En la
+**página de un producto real** (`/products/tu-producto`), el botón sí debe
+agregar al carrito con solo tener el producto publicado — si ahí tampoco
+funciona, dime en qué producto para revisarlo.
+
+**"No aparecen los cuadros de descripción":** el acordeón de "Descripción"
+y "Envíos y devoluciones" en la página de producto solo se muestra si el
+producto tiene texto en su campo de descripción en Shopify. Si el producto
+no tiene descripción escrita, ese cuadro no aparece (no es un error).
+
+**"La página de Contacto no tiene información":** ya no depende de que
+elijas una plantilla especial — cualquier página cuyo nombre/URL contenga
+"contacto" o "contact" ahora muestra automáticamente datos de contacto de
+muestra (correo, teléfono, horario) y el formulario, editables luego desde
+`sections/main-page.liquid` o (si sí asignas la plantilla `page.contact`)
+desde el editor de temas visualmente.
 
 ## Notas técnicas
 
