@@ -201,6 +201,15 @@ edítalas o bórralas cuando tengas tu contenido real.
   producto, para evitar agregar la variante equivocada.
 - Si el producto está agotado, el botón se deshabilita y dice "Agotado".
 
+**El catálogo completo (la página de colección a la que llevan los botones
+"Ver todo") usa esta misma tarjeta con botón de compra real** — fondo azul
+noche, recuadros blancos con sombra, precio, y "Agregar al Carrito"/"Elegir
+opciones"/"Agotado" según corresponda, con paginación dorada. Es la página
+que se abre al hacer clic en "Ver todo" desde "Nuestros Productos" o desde
+"Colección destacada"; si quieres que un enlace del menú (ej. "Nuestros
+Productos") lleve directo ahí, apúntalo a esa colección en **Tienda online →
+Navegación**.
+
 ### Página de Contacto
 
 Para usar la sección "Contacto" como una página real:

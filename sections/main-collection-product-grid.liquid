@@ -10,17 +10,17 @@
   </div>
 </section>
 
-<section class="section-padding">
+<section class="section-padding section-dark">
   <div class="page-width">
     {%- paginate collection.products by section.settings.products_per_page -%}
       {%- if collection.products.size > 0 -%}
         <div class="product-grid grid-cols-{{ section.settings.columns }}">
           {%- for card_product in collection.products -%}
-            {%- render 'product-card', card_product: card_product -%}
+            {%- render 'product-card-quick-add', card_product: card_product -%}
           {%- endfor -%}
         </div>
       {%- else -%}
-        <p style="text-align:center; padding: 3rem 0; color: var(--color-text-light);">
+        <p style="text-align:center; padding: 3rem 0; color: rgba(255,255,255,0.6);">
           {{ 'collections.general.no_matches' | t }}
         </p>
       {%- endif -%}
