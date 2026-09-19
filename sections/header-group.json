@@ -1,13 +1,1 @@
-{
-  "name": "Header",
-  "type": "header",
-  "sections": {
-    "announcement-bar": {
-      "type": "announcement-bar"
-    },
-    "header": {
-      "type": "header"
-    }
-  },
-  "order": ["announcement-bar", "header"]
-}
+{"name":"Header","type":"header","sections":{"announcement_bar_6X47MJ":{"type":"announcement-bar","name":"Barra de anuncio","settings":{"text":""}},"header":{"type":"header","settings":{"menu":"main-menu","logo_width":120}}},"order":["announcement_bar_6X47MJ","header"]}

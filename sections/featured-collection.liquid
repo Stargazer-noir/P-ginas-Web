@@ -20,7 +20,7 @@
         {%- for i in (1..section.settings.products_to_show) -%}
           <a href="{{ routes.all_products_collection_url }}" class="product-card">
             <div class="product-card__media">
-              {%- render 'placeholder-art', id: section.id | append: '-sample-' | append: i -%}
+              {%- render 'placeholder-art', id: section.id, append: i -%}
               <span class="product-card__badge">Muestra</span>
             </div>
             <div class="product-card__body">
@@ -72,3 +72,19 @@
   ]
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'placeholder-art', id: section.id | append: '-sample-' | append:
+    i -%}"
+  to: "{%- render 'placeholder-art', id: section.id, append: i -%}"
+  position: 1196..1255
+{% endcomment %}
+ {% style %}
+  #shopify-section-{{ section.id }} {
+    background-color: #191C21;
+  }
+{% endstyle %}

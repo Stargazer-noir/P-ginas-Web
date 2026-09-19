@@ -382,65 +382,6 @@ button { font-family: inherit; cursor: pointer; }
 .hero__text { color: rgba(255,255,255,0.85); margin-bottom: 1.75rem; max-width: 480px; }
 
 /* ==========================================================================
-   Hero slideshow
-   ========================================================================== */
-.hero-slider__track {
-  display: flex;
-  transition: transform 0.6s ease;
-}
-
-.hero-slider__slide {
-  flex: 0 0 100%;
-  min-width: 100%;
-}
-
-.hero-slider__arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 3;
-  width: 2.75rem;
-  height: 2.75rem;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.12);
-  border: 1px solid rgba(255,255,255,0.35);
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  backdrop-filter: blur(2px);
-  transition: background 0.2s ease, border-color 0.2s ease;
-}
-.hero-slider__arrow:hover { background: var(--color-gold); border-color: var(--color-gold); color: var(--color-black); }
-.hero-slider__arrow .icon { width: 1.2rem; height: 1.2rem; }
-.hero-slider__arrow--prev { left: 1.25rem; }
-.hero-slider__arrow--next { right: 1.25rem; }
-@media (min-width: 750px) {
-  .hero-slider__arrow--prev { left: 2rem; }
-  .hero-slider__arrow--next { right: 2rem; }
-}
-
-.hero-slider__dots {
-  position: absolute;
-  bottom: 1.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 3;
-  display: flex;
-  gap: 0.6rem;
-}
-.hero-slider__dot {
-  width: 0.55rem;
-  height: 0.55rem;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.4);
-  border: none;
-  padding: 0;
-  transition: background 0.2s ease, transform 0.2s ease;
-}
-.hero-slider__dot.is-active { background: var(--color-gold); transform: scale(1.2); }
-
-/* ==========================================================================
    Trust badges
    ========================================================================== */
 .trust-badges {
@@ -1089,3 +1030,296 @@ button { font-family: inherit; cursor: pointer; }
 .grid-cols-2 { --grid-cols: 2; }
 .grid-cols-3 { --grid-cols: 3; }
 .grid-cols-4 { --grid-cols: 4; }
+/* ===== PALETA LUXURY EMPOREON ===== */
+
+/* ANNOUNCEMENT BAR */
+.shopify-section-group-header-group #shopify-section-announcement-bar {
+  background-color: #c9a84c;
+  color: #0f52e4ff;
+}
+
+/* HEADER */
+.shopify-section-group-header-group #shopify-section-header {
+  background-color: #0f2044;
+  color: #ffffff;
+}
+.shopify-section-group-header-group #shopify-section-header a {
+  color: #ffffff;
+}
+.shopify-section-group-header-group #shopify-section-header a:hover {
+  color: #c9a84c;
+}
+
+/* FOOTER */
+.shopify-section-group-footer-group #shopify-section-footer {
+  background-color: #0f2044;
+  color: #ffffff;
+}
+.shopify-section-group-footer-group #shopify-section-footer a {
+  color: #c9a84c;
+}
+
+/* STATS */
+.section-stats {
+  background-color: #0f2044;
+  color: #ffffff;
+}
+.section-stats h2,
+.section-stats h3 {
+  color: #c9a84c;
+}
+
+/* TESTIMONIALS */
+.section-testimonials {
+  background-color: #c9a84c;
+  color: #0f2044;
+}
+.section-testimonials h2,
+.section-testimonials h3 {
+  color: #0f2044;
+}
+
+/* TRUST BADGES */
+.section-trust-badges {
+  background-color: #0f2044;
+  color: #ffffff;
+}
+
+/* FEATURED COLLECTION */
+.section-featured-collection {
+  background-color: #f5f0e8;
+  color: #0f2044;
+}
+.section-featured-collection h2 {
+  color: #0f2044;
+}
+
+/* FEATURED PRODUCT */
+.section-featured-product {
+  background-color: #f5f0e8;
+  color: #0f2044;
+}
+
+/* NEWSLETTER */
+.section-newsletter {
+  background-color: #0f2044;
+  color: #ffffff;
+}
+.section-newsletter h2 {
+  color: #c9a84c;
+}
+
+/* RICH TEXT */
+.section-rich-text {
+  background-color: #f5f0e8;
+  color: #0f2044;
+}
+.section-rich-text h1,
+.section-rich-text h2 {
+  color: #0f2044;
+}
+
+/* BOTONES — estilo luxury */
+.btn, .button, button[type="submit"] {
+  background-color: #c9a84c;
+  color: #0f2044;
+  border: none;
+}
+.btn:hover, .button:hover, button[type="submit"]:hover {
+  background-color: #0f2044;
+  color: #c9a84c;
+  border: 1px solid #c9a84c;
+}
+/* ===== PALETA LUXURY EMPOREON — SIN CREMA ===== */
+
+/* ANNOUNCEMENT BAR → dorado */
+.shopify-section-group-header-group #shopify-section-announcement-bar {
+  background-color: #3c75caff;
+  color: #0f2044;
+}
+
+/* HEADER → navy */
+.shopify-section-group-header-group #shopify-section-header {
+  background-color: #0f2044;
+  color: #ffffff;
+}
+.shopify-section-group-header-group #shopify-section-header a {
+  color: #ffffff;
+}
+.shopify-section-group-header-group #shopify-section-header a:hover {
+  color: #c9a84c;
+}
+
+/* TRUST BADGES → dorado */
+.section-trust-badges {
+  background-color: #c9a84c;
+  color: #0f2044;
+}
+.section-trust-badges h2,
+.section-trust-badges h3 {
+  color: #0f2044;
+}
+
+/* FEATURED COLLECTION → azul medio */
+.section-featured-collection {
+  background-color: #1a3a6b;
+  color: #ffffff;
+}
+.section-featured-collection h2 {
+  color: #c9a84c;
+}
+
+/* FEATURED PRODUCT → navy */
+.section-featured-product {
+  background-color: #0f2044;
+  color: #ffffff;
+}
+.section-featured-product h1,
+.section-featured-product h2 {
+  color: #c9a84c;
+}
+.section-featured-product .price {
+  color: #ffffff;
+}
+
+/* STATS → azul medio */
+.section-stats {
+  background-color: #1a3a6b;
+  color: #ffffff;
+}
+.section-stats h2,
+.section-stats h3 {
+  color: #c9a84c;
+}
+
+/* RICH TEXT → navy */
+.section-rich-text {
+  background-color: #0f2044;
+  color: #ffffff;
+}
+.section-rich-text h1,
+.section-rich-text h2 {
+  color: #c9a84c;
+}
+
+/* TESTIMONIALS → dorado */
+.section-testimonials {
+  background-color: #c9a84c;
+  color: #0f2044;
+}
+.section-testimonials h2,
+.section-testimonials h3,
+.section-testimonials p {
+  color: #0f2044;
+}
+
+/* NEWSLETTER → azul medio */
+.section-newsletter {
+  background-color: #1a3a6b;
+  color: #ffffff;
+}
+.section-newsletter h2 {
+  color: #c9a84c;
+}
+
+/* COLECCIONES → navy */
+.section-main-list-collections {
+  background-color: #0f2044;
+  color: #ffffff;
+}
+.section-main-list-collections h2 {
+  color: #c9a84c;
+}
+
+/* PÁGINA DE PRODUCTO → azul medio */
+.section-main-product {
+  background-color: #1a3a6b;
+  color: #ffffff;
+}
+.section-main-product h1 {
+  color: #c9a84c;
+}
+.section-main-product .price {
+  color: #ffffff;
+}
+
+/* CARRITO → navy */
+.section-main-cart-items {
+  background-color: #0f2044;
+  color: #ffffff;
+}
+.section-main-cart-items h2 {
+  color: #c9a84c;
+}
+
+/* CONTACTO → azul medio */
+.section-contact {
+  background-color: #1a3a6b;
+  color: #ffffff;
+}
+.section-contact h2 {
+  color: #c9a84c;
+}
+
+/* PÁGINA DE CONTENIDO → navy */
+.section-main-page {
+  background-color: #0f2044;
+  color: #ffffff;
+}
+.section-main-page h1,
+.section-main-page h2 {
+  color: #c9a84c;
+}
+
+/* 404 → azul medio */
+.section-main-404 {
+  background-color: #1a3a6b;
+  color: #ffffff;
+}
+.section-main-404 h1 {
+  color: #c9a84c;
+}
+
+/* FOOTER → navy */
+.shopify-section-group-footer-group #shopify-section-footer {
+  background-color: #0f2044;
+  color: #ffffff;
+}
+.shopify-section-group-footer-group #shopify-section-footer a {
+  color: #c9a84c;
+}
+
+/* FONDO GENERAL → navy oscuro */
+body {
+  background-color: #0f2044;
+  color: #ffffff;
+}
+
+/* BOTONES */
+.btn,
+.button,
+button[type="submit"],
+.shopify-payment-button__button {
+  background-color: #c9a84c;
+  color: #0f2044;
+  border: none;
+}
+.btn:hover,
+.button:hover,
+button[type="submit"]:hover {
+  background-color: #ffffff;
+  color: #0f2044;
+  border: none;
+}
+
+/* TÍTULOS GLOBALES */
+h1, h2, h3 {
+  color: inherit;
+}
+#shopify-section-template--21996875481242__featured-product {
+  background-color: #123070ff;
+  color: #ffffff;
+}
+#shopify-section-template--21996875481242__testimonials {
+  background-color: #c9a14b;
+}

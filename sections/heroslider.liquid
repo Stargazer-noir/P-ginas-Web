@@ -1,0 +1,189 @@
+{% comment %} Hero Slider Section {% endcomment %}
+<style>
+  .emporeon-slider {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+  .emporeon-slider__track {
+    display: flex;
+    transition: transform 0.6s ease;
+  }
+  .emporeon-slide {
+    min-width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 600px;
+    padding: 60px 40px;
+    box-sizing: border-box;
+  }
+
+  /* DIAPOSITIVA 1 — Navy */
+  .emporeon-slide--1 {
+    background-color: #0f2044;
+    color: #ffffff;
+  }
+  .emporeon-slide--1 .slide-eyebrow { color: #c9a84c; font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 12px; }
+  .emporeon-slide--1 .slide-heading { color: #ffffff; font-size: clamp(28px, 4vw, 52px); font-weight: 700; line-height: 1.15; margin-bottom: 16px; }
+  .emporeon-slide--1 .slide-text { color: #d0cfc9; font-size: 16px; margin-bottom: 32px; max-width: 480px; }
+  .emporeon-slide--1 .slide-btn { background-color: #c9a84c; color: #0f2044; padding: 14px 32px; font-weight: 700; border: none; cursor: pointer; letter-spacing: 0.08em; text-decoration: none; display: inline-block; }
+  .emporeon-slide--1 .slide-btn:hover { background-color: #ffffff; color: #0f2044; }
+
+  /* DIAPOSITIVA 2 — Celeste marino */
+  .emporeon-slide--2 {
+    background-color: #1a3a6b;
+    color: #ffffff;
+  }
+  .emporeon-slide--2 .slide-heading { color: #c9a84c; font-size: clamp(22px, 3vw, 40px); font-weight: 700; text-align: center; margin-bottom: 8px; }
+  .emporeon-slide--2 .slide-text { color: #d0cfc9; text-align: center; margin-bottom: 40px; font-size: 15px; }
+  .emporeon-slide--2 .slide-btn { background-color: #c9a84c; color: #0f2044; padding: 12px 28px; font-weight: 700; border: none; cursor: pointer; letter-spacing: 0.08em; text-decoration: none; display: inline-block; }
+
+  .slide-2-inner { max-width: 1200px; width: 100%; margin: 0 auto; text-align: center; }
+  .slide-2-products { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-bottom: 32px; }
+  .slide-2-product { text-align: center; flex: 0 0 calc(25% - 18px); max-width: 220px; }
+  .slide-2-product img { width: 100%; height: 220px; object-fit: cover; border-radius: 4px; margin-bottom: 10px; }
+  .slide-2-product span { display: block; color: #ffffff; font-size: 13px; letter-spacing: 0.05em; }
+
+  .slide-1-inner { max-width: 1200px; width: 100%; margin: 0 auto; display: flex; align-items: center; gap: 60px; }
+  .slide-1-content { flex: 1; }
+  .slide-1-image { flex: 1; }
+  .slide-1-image img { width: 100%; height: 500px; object-fit: cover; }
+
+  /* CONTROLES */
+  .emporeon-slider__dots { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 10; }
+  .slider-dot { width: 10px; height: 10px; border-radius: 50%; background-color: rgba(255,255,255,0.4); cursor: pointer; border: none; padding: 0; }
+  .slider-dot.active { background-color: #c9a84c; }
+  .emporeon-slider__arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: #ffffff; width: 44px; height: 44px; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; z-index: 10; }
+  .emporeon-slider__arrow:hover { background: #c9a84c; color: #0f2044; border-color: #c9a84c; }
+  .emporeon-slider__arrow--prev { left: 20px; }
+  .emporeon-slider__arrow--next { right: 20px; }
+
+  @media (max-width: 768px) {
+    .slide-1-inner { flex-direction: column; }
+    .slide-2-product { flex: 0 0 calc(50% - 12px); }
+    .emporeon-slide { min-height: 500px; padding: 40px 20px; }
+  }
+</style>
+
+<div class="emporeon-slider" id="emporeon-slider-{{ section.id }}">
+  <div class="emporeon-slider__track" id="slider-track-{{ section.id }}">
+
+    {%- comment -%} DIAPOSITIVA 1 {%- endcomment -%}
+    <div class="emporeon-slide emporeon-slide--1">
+      <div class="slide-1-inner">
+        <div class="slide-1-content">
+          {% if section.settings.slide1_eyebrow != blank %}
+            <p class="slide-eyebrow">{{ section.settings.slide1_eyebrow }}</p>
+          {% endif %}
+          <h2 class="slide-heading">{{ section.settings.slide1_heading }}</h2>
+          <p class="slide-text">{{ section.settings.slide1_text }}</p>
+          {% if section.settings.slide1_btn_label != blank %}
+            <a href="{{ section.settings.slide1_btn_link }}" class="slide-btn">{{ section.settings.slide1_btn_label }}</a>
+          {% endif %}
+        </div>
+        {% if section.settings.slide1_image != blank %}
+          <div class="slide-1-image">
+            {{ section.settings.slide1_image | image_url: width: 800 | image_tag }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    {%- comment -%} DIAPOSITIVA 2 {%- endcomment -%}
+    <div class="emporeon-slide emporeon-slide--2">
+      <div class="slide-2-inner">
+        <h2 class="slide-heading">{{ section.settings.slide2_heading }}</h2>
+        <p class="slide-text">{{ section.settings.slide2_text }}</p>
+        <div class="slide-2-products">
+          {% for block in section.blocks %}
+            <div class="slide-2-product" {{ block.shopify_attributes }}>
+              {% if block.settings.product_image != blank %}
+                {{ block.settings.product_image | image_url: width: 400 | image_tag }}
+              {% else %}
+                {{ 'product-1' | placeholder_svg_tag }}
+              {% endif %}
+              <span>{{ block.settings.product_name }}</span>
+            </div>
+          {% endfor %}
+        </div>
+        {% if section.settings.slide2_btn_label != blank %}
+          <a href="{{ section.settings.slide2_btn_link }}" class="slide-btn">{{ section.settings.slide2_btn_label }}</a>
+        {% endif %}
+      </div>
+    </div>
+
+  </div>
+
+  <button class="emporeon-slider__arrow emporeon-slider__arrow--prev" onclick="sliderPrev('{{ section.id }}')">&#8592;</button>
+  <button class="emporeon-slider__arrow emporeon-slider__arrow--next" onclick="sliderNext('{{ section.id }}')">&#8594;</button>
+
+  <div class="emporeon-slider__dots">
+    <button class="slider-dot active" onclick="goToSlide('{{ section.id }}', 0)"></button>
+    <button class="slider-dot" onclick="goToSlide('{{ section.id }}', 1)"></button>
+  </div>
+</div>
+
+<script>
+  (function() {
+    var current = 0;
+    var total = 2;
+    var id = '{{ section.id }}';
+
+    window.sliderPrev = function(sid) { if (sid !== id) return; current = (current - 1 + total) % total; updateSlider(sid); }
+    window.sliderNext = function(sid) { if (sid !== id) return; current = (current + 1) % total; updateSlider(sid); }
+    window.goToSlide = function(sid, i) { if (sid !== id) return; current = i; updateSlider(sid); }
+
+    function updateSlider(sid) {
+      document.getElementById('slider-track-' + sid).style.transform = 'translateX(-' + (current * 100) + '%)';
+      document.querySelectorAll('#emporeon-slider-' + sid + ' .slider-dot').forEach(function(d, i) {
+        d.classList.toggle('active', i === current);
+      });
+    }
+
+    setInterval(function() { current = (current + 1) % total; updateSlider(id); }, 5000);
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Hero Slider",
+  "settings": [
+    { "type": "header", "content": "Diapositiva 1" },
+    { "type": "text", "id": "slide1_eyebrow", "label": "Texto pequeño superior", "default": "EMPOREON" },
+    { "type": "text", "id": "slide1_heading", "label": "Título", "default": "THE ART OF PURE STATUS." },
+    { "type": "textarea", "id": "slide1_text", "label": "Descripción", "default": "Discover your ritual." },
+    { "type": "text", "id": "slide1_btn_label", "label": "Texto del botón", "default": "SHOP NOW" },
+    { "type": "url", "id": "slide1_btn_link", "label": "Enlace del botón" },
+    { "type": "image_picker", "id": "slide1_image", "label": "Imagen de fondo o producto" },
+    { "type": "header", "content": "Diapositiva 2" },
+    { "type": "text", "id": "slide2_heading", "label": "Título", "default": "NUESTROS PRODUCTOS" },
+    { "type": "textarea", "id": "slide2_text", "label": "Descripción", "default": "Calidad y exclusividad en cada detalle." },
+    { "type": "text", "id": "slide2_btn_label", "label": "Texto del botón", "default": "VER COLECCIÓN" },
+    { "type": "url", "id": "slide2_btn_link", "label": "Enlace del botón" }
+  ],
+  "blocks": [
+    {
+      "type": "product_item",
+      "name": "Producto",
+      "limit": 4,
+      "settings": [
+        { "type": "image_picker", "id": "product_image", "label": "Imagen del producto" },
+        { "type": "text", "id": "product_name", "label": "Nombre del producto", "default": "Producto" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Slider",
+      "blocks": [
+        { "type": "product_item" },
+        { "type": "product_item" },
+        { "type": "product_item" },
+        { "type": "product_item" }
+      ]
+    }
+  ]
+}
+{% endschema %}
