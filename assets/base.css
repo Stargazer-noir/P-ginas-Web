@@ -382,6 +382,65 @@ button { font-family: inherit; cursor: pointer; }
 .hero__text { color: rgba(255,255,255,0.85); margin-bottom: 1.75rem; max-width: 480px; }
 
 /* ==========================================================================
+   Hero slideshow
+   ========================================================================== */
+.hero-slider__track {
+  display: flex;
+  transition: transform 0.6s ease;
+}
+
+.hero-slider__slide {
+  flex: 0 0 100%;
+  min-width: 100%;
+}
+
+.hero-slider__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.35);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(2px);
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+.hero-slider__arrow:hover { background: var(--color-gold); border-color: var(--color-gold); color: var(--color-black); }
+.hero-slider__arrow .icon { width: 1.2rem; height: 1.2rem; }
+.hero-slider__arrow--prev { left: 1.25rem; }
+.hero-slider__arrow--next { right: 1.25rem; }
+@media (min-width: 750px) {
+  .hero-slider__arrow--prev { left: 2rem; }
+  .hero-slider__arrow--next { right: 2rem; }
+}
+
+.hero-slider__dots {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  gap: 0.6rem;
+}
+.hero-slider__dot {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.4);
+  border: none;
+  padding: 0;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.hero-slider__dot.is-active { background: var(--color-gold); transform: scale(1.2); }
+
+/* ==========================================================================
    Trust badges
    ========================================================================== */
 .trust-badges {
@@ -475,6 +534,9 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 .product-card__body { padding: 1rem 1.1rem 1.25rem; }
+.product-card__media-link { display: block; }
+.product-card__title-link { text-decoration: none; color: inherit; display: block; }
+.product-card__quick-add { width: 100%; margin-top: 0.85rem; font-size: 0.72rem; padding: 0.75em 1em; }
 
 .product-card__vendor {
   font-size: 0.68rem;

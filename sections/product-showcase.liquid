@@ -1,0 +1,75 @@
+<section class="section-padding section-dark">
+  <div class="page-width">
+    <div class="section-heading">
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+      {%- endif -%}
+      <h2>{{ section.settings.heading }}</h2>
+      {%- if section.settings.text != blank -%}
+        <p>{{ section.settings.text }}</p>
+      {%- endif -%}
+    </div>
+
+    {%- assign showcase_collection = collections[section.settings.collection] -%}
+    <div class="product-grid grid-cols-{{ section.settings.columns }}">
+      {%- for card_product in showcase_collection.products limit: section.settings.products_to_show -%}
+        {%- render 'product-card-quick-add', card_product: card_product -%}
+      {%- else -%}
+        {%- assign sample_names = 'Amethyst Green Imperial,Midnight Oolong Reserve,Golden Peak White,Onyx Pu-erh Selection' | split: ',' -%}
+        {%- assign sample_prices = '95.00,88.00,110.00,79.00' | split: ',' -%}
+        {%- for i in (1..section.settings.products_to_show) -%}
+          <a href="{{ routes.all_products_collection_url }}" class="product-card">
+            <div class="product-card__media">
+              {%- render 'placeholder-art', id: section.id | append: '-showcase-' | append: i -%}
+              <span class="product-card__badge">Muestra</span>
+            </div>
+            <div class="product-card__body">
+              <span class="product-card__vendor">Emporeon</span>
+              <h3 class="product-card__title">{{ sample_names[forloop.index0] | default: 'Origen Selecto' }}</h3>
+              <div class="product-card__price">${{ sample_prices[forloop.index0] | default: '95.00' }}</div>
+              <span class="button button--dark product-card__quick-add">Ver Productos</span>
+            </div>
+          </a>
+        {%- endfor -%}
+      {%- endfor -%}
+    </div>
+
+    <div style="text-align:center; margin-top:2.5rem;">
+      {%- if showcase_collection != blank -%}
+        <a href="{{ showcase_collection.url }}" class="button button--primary">{{ 'sections.featured_collection.view_all' | t }}</a>
+      {%- else -%}
+        <a href="{{ routes.all_products_collection_url }}" class="button button--primary">{{ 'sections.featured_collection.view_all' | t }}</a>
+        <p style="font-size:0.75rem; color:rgba(255,255,255,0.5); margin-top:1rem;">
+          Elige una colección real en la configuración de esta sección para reemplazar los productos de muestra.
+        </p>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Productos (con carrito)",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Texto pequeño superior", "default": "Compra Directo" },
+    { "type": "text", "id": "heading", "label": "Título", "default": "Nuestros Productos" },
+    { "type": "textarea", "id": "text", "label": "Texto", "default": "Agrega tus favoritos al carrito sin salir de esta página." },
+    { "type": "collection", "id": "collection", "label": "Colección" },
+    { "type": "range", "id": "products_to_show", "label": "Productos a mostrar", "min": 2, "max": 12, "step": 1, "default": 4 },
+    {
+      "type": "select",
+      "id": "columns",
+      "label": "Columnas (escritorio)",
+      "options": [
+        { "value": "2", "label": "2" },
+        { "value": "3", "label": "3" },
+        { "value": "4", "label": "4" }
+      ],
+      "default": "4"
+    }
+  ],
+  "presets": [
+    { "name": "Productos (con carrito)" }
+  ]
+}
+{% endschema %}

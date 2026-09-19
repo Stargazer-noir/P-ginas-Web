@@ -1,0 +1,420 @@
+{% doc %}
+  @prompt
+    Agrega una sección que diga Enlaces Rápidos, en donde hayan 4 botones:
+    Contacto
+    Política de privacidad
+    Política de devolución 
+    Términos del servicio
+    
+    En donde cada uno al presionarlos se redirija a otra sección con el detalle escrito, es decir habrá información de cada uno de esos botones, los botones no deben ser en casillas, solo la palabra subrayada y al darle click te redirija a la sección con su debida información, cada sección a la que se redirija debe ser independiente, es decir la información de las 4 opciones debe tener su propia diapositiva. Que sea el fondo color navy. Y las letras en blanco.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-quick-links-{{ ai_gen_id }} {
+    display: block;
+    background-color: {{ block.settings.background_color }};
+    padding: 60px 20px;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+  }
+
+  .ai-quick-links-container-{{ ai_gen_id }} {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .ai-quick-links-title-{{ ai_gen_id }} {
+    color: {{ block.settings.text_color }};
+    font-size: {{ block.settings.title_size }}px;
+    margin: 0 0 30px;
+    text-align: center;
+  }
+
+  .ai-quick-links-list-{{ ai_gen_id }} {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .ai-quick-links-item-{{ ai_gen_id }} {
+    margin: 0;
+  }
+
+  .ai-quick-links-link-{{ ai_gen_id }} {
+    color: {{ block.settings.text_color }};
+    font-size: {{ block.settings.link_size }}px;
+    text-decoration: underline;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .ai-quick-links-link-{{ ai_gen_id }}:hover {
+    opacity: 0.7;
+  }
+
+  .ai-quick-links-section-{{ ai_gen_id }} {
+    display: none;
+    background-color: {{ block.settings.background_color }};
+    padding: 60px 20px;
+    width: 100%;
+  }
+
+  .ai-quick-links-section-{{ ai_gen_id }}.active {
+    display: block;
+  }
+
+  .ai-quick-links-section-content-{{ ai_gen_id }} {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .ai-quick-links-section-title-{{ ai_gen_id }} {
+    color: {{ block.settings.text_color }};
+    font-size: {{ block.settings.section_title_size }}px;
+    margin: 0 0 20px;
+  }
+
+  .ai-quick-links-section-text-{{ ai_gen_id }} {
+    color: {{ block.settings.text_color }};
+    font-size: {{ block.settings.section_text_size }}px;
+    line-height: 1.6;
+  }
+
+  .ai-quick-links-back-button-{{ ai_gen_id }} {
+    color: {{ block.settings.text_color }};
+    font-size: {{ block.settings.link_size }}px;
+    text-decoration: underline;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    margin-top: 30px;
+    transition: opacity 0.3s ease;
+  }
+
+  .ai-quick-links-back-button-{{ ai_gen_id }}:hover {
+    opacity: 0.7;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-quick-links-list-{{ ai_gen_id }} {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .ai-quick-links-{{ ai_gen_id }} {
+      padding: 40px 20px;
+    }
+
+    .ai-quick-links-section-{{ ai_gen_id }} {
+      padding: 40px 20px;
+    }
+  }
+{% endstyle %}
+
+<quick-links-{{ ai_gen_id }} class="ai-quick-links-wrapper-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-quick-links-{{ ai_gen_id }} ai-quick-links-main-{{ ai_gen_id }}">
+    <div class="ai-quick-links-container-{{ ai_gen_id }}">
+      <h2 class="ai-quick-links-title-{{ ai_gen_id }}">{{ block.settings.title }}</h2>
+      <ul class="ai-quick-links-list-{{ ai_gen_id }}">
+        <li class="ai-quick-links-item-{{ ai_gen_id }}">
+          <button class="ai-quick-links-link-{{ ai_gen_id }}" data-section="contact">
+            {{ block.settings.contact_label }}
+          </button>
+        </li>
+        <li class="ai-quick-links-item-{{ ai_gen_id }}">
+          <button class="ai-quick-links-link-{{ ai_gen_id }}" data-section="privacy">
+            {{ block.settings.privacy_label }}
+          </button>
+        </li>
+        <li class="ai-quick-links-item-{{ ai_gen_id }}">
+          <button class="ai-quick-links-link-{{ ai_gen_id }}" data-section="return">
+            {{ block.settings.return_label }}
+          </button>
+        </li>
+        <li class="ai-quick-links-item-{{ ai_gen_id }}">
+          <button class="ai-quick-links-link-{{ ai_gen_id }}" data-section="terms">
+            {{ block.settings.terms_label }}
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="ai-quick-links-section-{{ ai_gen_id }}" data-section-id="contact">
+    <div class="ai-quick-links-section-content-{{ ai_gen_id }}">
+      <h2 class="ai-quick-links-section-title-{{ ai_gen_id }}">{{ block.settings.contact_label }}</h2>
+      <div class="ai-quick-links-section-text-{{ ai_gen_id }}">
+        {{ block.settings.contact_content }}
+      </div>
+      <button class="ai-quick-links-back-button-{{ ai_gen_id }}">{{ block.settings.back_label }}</button>
+    </div>
+  </div>
+
+  <div class="ai-quick-links-section-{{ ai_gen_id }}" data-section-id="privacy">
+    <div class="ai-quick-links-section-content-{{ ai_gen_id }}">
+      <h2 class="ai-quick-links-section-title-{{ ai_gen_id }}">{{ block.settings.privacy_label }}</h2>
+      <div class="ai-quick-links-section-text-{{ ai_gen_id }}">
+        {{ block.settings.privacy_content }}
+      </div>
+      <button class="ai-quick-links-back-button-{{ ai_gen_id }}">{{ block.settings.back_label }}</button>
+    </div>
+  </div>
+
+  <div class="ai-quick-links-section-{{ ai_gen_id }}" data-section-id="return">
+    <div class="ai-quick-links-section-content-{{ ai_gen_id }}">
+      <h2 class="ai-quick-links-section-title-{{ ai_gen_id }}">{{ block.settings.return_label }}</h2>
+      <div class="ai-quick-links-section-text-{{ ai_gen_id }}">
+        {{ block.settings.return_content }}
+      </div>
+      <button class="ai-quick-links-back-button-{{ ai_gen_id }}">{{ block.settings.back_label }}</button>
+    </div>
+  </div>
+
+  <div class="ai-quick-links-section-{{ ai_gen_id }}" data-section-id="terms">
+    <div class="ai-quick-links-section-content-{{ ai_gen_id }}">
+      <h2 class="ai-quick-links-section-title-{{ ai_gen_id }}">{{ block.settings.terms_label }}</h2>
+      <div class="ai-quick-links-section-text-{{ ai_gen_id }}">
+        {{ block.settings.terms_content }}
+      </div>
+      <button class="ai-quick-links-back-button-{{ ai_gen_id }}">{{ block.settings.back_label }}</button>
+    </div>
+  </div>
+</quick-links-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class QuickLinks{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.mainSection = this.querySelector('.ai-quick-links-main-{{ ai_gen_id }}');
+        this.linkButtons = this.querySelectorAll('.ai-quick-links-link-{{ ai_gen_id }}');
+        this.backButtons = this.querySelectorAll('.ai-quick-links-back-button-{{ ai_gen_id }}');
+        this.sections = this.querySelectorAll('.ai-quick-links-section-{{ ai_gen_id }}');
+
+        this.setupEventListeners();
+      }
+
+      setupEventListeners() {
+        this.linkButtons.forEach((button) => {
+          button.addEventListener('click', (e) => {
+            const sectionId = e.target.getAttribute('data-section');
+            this.showSection(sectionId);
+          });
+        });
+
+        this.backButtons.forEach((button) => {
+          button.addEventListener('click', () => {
+            this.showMain();
+          });
+        });
+      }
+
+      showSection(sectionId) {
+        this.mainSection.style.display = 'none';
+        this.sections.forEach((section) => {
+          section.classList.remove('active');
+        });
+
+        const targetSection = this.querySelector(`[data-section-id="${sectionId}"]`);
+        if (targetSection) {
+          targetSection.classList.add('active');
+          window.scrollTo({ top: targetSection.offsetTop - 100, behavior: 'smooth' });
+        }
+      }
+
+      showMain() {
+        this.sections.forEach((section) => {
+          section.classList.remove('active');
+        });
+        this.mainSection.style.display = 'block';
+        window.scrollTo({ top: this.mainSection.offsetTop - 100, behavior: 'smooth' });
+      }
+    }
+
+    customElements.define('quick-links-{{ ai_gen_id }}', QuickLinks{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Enlaces rápidos",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Título principal"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título",
+      "default": "Enlaces Rápidos"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "Tamaño del título",
+      "min": 16,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "header",
+      "content": "Botones de navegación"
+    },
+    {
+      "type": "text",
+      "id": "contact_label",
+      "label": "Etiqueta de contacto",
+      "default": "Contacto"
+    },
+    {
+      "type": "text",
+      "id": "privacy_label",
+      "label": "Etiqueta de privacidad",
+      "default": "Política de privacidad"
+    },
+    {
+      "type": "text",
+      "id": "return_label",
+      "label": "Etiqueta de devolución",
+      "default": "Política de devolución"
+    },
+    {
+      "type": "text",
+      "id": "terms_label",
+      "label": "Etiqueta de términos",
+      "default": "Términos del servicio"
+    },
+    {
+      "type": "text",
+      "id": "back_label",
+      "label": "Etiqueta de volver",
+      "default": "← Volver a Enlaces Rápidos"
+    },
+    {
+      "type": "range",
+      "id": "link_size",
+      "label": "Tamaño de enlaces",
+      "min": 12,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "header",
+      "content": "Contenido de contacto"
+    },
+    {
+      "type": "richtext",
+      "id": "contact_content",
+      "label": "Contenido",
+      "default": "<p>Puede contactarnos a través de los siguientes medios:<br><br>Email: contacto@emporion.site<br>Teléfono: +51 999 999 999<br>Dirección: Lima, Perú</p>"
+    },
+    {
+      "type": "header",
+      "content": "Contenido de política de privacidad"
+    },
+    {
+      "type": "richtext",
+      "id": "privacy_content",
+      "label": "Contenido",
+      "default": "<p>Nos comprometemos a proteger su privacidad. Recopilamos y utilizamos información personal únicamente para procesar pedidos y mejorar su experiencia de compra. No compartimos sus datos con terceros sin su consentimiento.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Contenido de política de devolución"
+    },
+    {
+      "type": "richtext",
+      "id": "return_content",
+      "label": "Contenido",
+      "default": "<p>Aceptamos devoluciones dentro de los 30 días posteriores a la compra. Los productos deben estar en su estado original con todas las etiquetas. El reembolso se procesará dentro de 5-7 días hábiles después de recibir el artículo devuelto.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Contenido de términos del servicio"
+    },
+    {
+      "type": "richtext",
+      "id": "terms_content",
+      "label": "Contenido",
+      "default": "<p>Al utilizar este sitio web, usted acepta nuestros términos y condiciones. Nos reservamos el derecho de modificar estos términos en cualquier momento. El uso continuado del sitio después de los cambios constituye la aceptación de los nuevos términos.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Estilo de secciones de contenido"
+    },
+    {
+      "type": "range",
+      "id": "section_title_size",
+      "label": "Tamaño del título de sección",
+      "min": 16,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "section_text_size",
+      "label": "Tamaño del texto de sección",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Colores"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Color de fondo",
+      "default": "#000080"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Color de texto",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Diseño"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Ancho en escritorio",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    }
+  ],
+  "presets": [
+    {
+      "name": "Enlaces rápidos"
+    }
+  ]
+}
+{% endschema %}

@@ -17,18 +17,44 @@ testimonios" mostrada en las referencias visuales de la marca.
 > Si tu sitio en vivo se sigue viendo igual después de un cambio, lo primero
 > a revisar es: ¿subiste el ZIP nuevo? ¿le diste clic a "Publicar"?
 
+## 🔎 Causa real de "todo se ve en blanco" (ya corregida en este ZIP)
+
+Analicé el archivo que exportaste de tu tienda en vivo (`theme_export...zip`) y
+encontré la causa exacta: **`config/settings_schema.json` en tu tienda estaba
+prácticamente vacío** (2 bytes, cuando debería tener toda la configuración de
+colores/tipografía). Sin ese archivo, `settings.color_navy`, `settings.color_gold`,
+etc. quedan vacíos, así que **todas las variables de color se rompen** y el
+navegador usa sus valores por defecto (fondos transparentes, texto negro) — por
+eso se veía "todo en blanco" pero el texto seguía siendo legible. Esto no era un
+problema del diseño, sino de ese archivo específico en tu tienda (probablemente
+se sobrescribió sin querer al editar código directamente en el admin de
+Shopify). Al subir este ZIP completo, ese archivo se restaura correctamente.
+
+También encontré y conservé dos cosas que ya habías construido directamente en
+Shopify con su editor de código / IA:
+- Tu bloque **"Enlaces Rápidos"** (Contacto / Política de privacidad / Política
+  de devolución / Términos del servicio) con tu información real — está intacto
+  en `blocks/ai_gen_block_a7ed9d0.liquid` y sigue funcionando en la página de
+  Contacto.
+- Reemplacé tu primer intento de "Hero Slider" (`sections/heroslider.liquid`,
+  con solo 2 diapositivas fijas y colores escritos a mano) por una versión
+  nueva y más flexible (`sections/hero-slider.liquid`) que usa los colores del
+  tema y permite agregar/quitar diapositivas desde el editor sin tocar código.
+
 ## Contenido del tema
 
 ```
 layout/         theme.liquid, password.liquid
-sections/       header, footer, hero, featured-product, trust-badges,
-                featured-collection, brand-ethos, testimonials, stats,
-                feature-grid, newsletter, contact, rich-text, main-product,
-                main-collection-product-grid, main-cart-items, main-page,
-                main-404, main-search, main-list-collections,
-                main-password-header/footer
-snippets/       logo, product-card, price, cart-drawer, placeholder-art,
-                icon-* (incluye icon-trident.liquid, el logo dorado)
+sections/       header, footer, hero, hero-slider, featured-product,
+                product-showcase, trust-badges, featured-collection,
+                brand-ethos, testimonials, stats, feature-grid, newsletter,
+                contact, rich-text, main-product, main-collection-product-grid,
+                main-cart-items, main-page, main-404, main-search,
+                main-list-collections, main-password-header/footer
+blocks/         ai_gen_block_a7ed9d0.liquid (tu bloque "Enlaces Rápidos")
+snippets/       logo, product-card, product-card-quick-add, price,
+                cart-drawer, placeholder-art, icon-* (incluye
+                icon-trident.liquid, el logo dorado)
 templates/      index, product, collection, page, page.contact, cart, 404,
                 search, list-collections, password (todas en JSON, editables
                 visualmente desde el editor de temas)
@@ -132,8 +158,10 @@ frasco, con precio por 100g y bullets de beneficios):
 
 | Sección | Uso |
 |---|---|
-| Hero | Banner principal con imagen, texto y botón "Comprar Ahora" |
+| **Hero (slideshow)** | El banner principal de la portada, ahora es un **carrusel editable**: agrega, quita o reordena diapositivas desde el editor (imagen, texto, botón por diapositiva), con flechas, puntos y avance automático configurables. Trae 3 diapositivas de ejemplo: marca, envío confiable y variedad de productos |
+| Hero (estático) | La versión original de una sola imagen, por si prefieres un banner fijo en vez de carrusel en alguna página |
 | Producto destacado | Banner tipo "spotlight" con un producto real (imagen, precio, bullets y botón de agregar al carrito) |
+| **Productos (con carrito)** | Cuadrícula de productos con botón real de **"Agregar al Carrito"** en cada tarjeta (sin salir de la página) — muestra oferta/agotado/múltiples variantes automáticamente |
 | Sellos de confianza | 3 íconos: pagos seguros, envío global, origen certificado |
 | Colección destacada | Grid de productos de una colección (con 4 productos de muestra mientras no hay colección real) |
 | Ethos de marca | Imagen + texto (historia / estilo de vida) |
@@ -147,6 +175,31 @@ Todas se agregan/reordenan desde **Editor de temas → Agregar sección**. Ya
 vienen precargadas con contenido de ejemplo (textos, estadísticas,
 testimonios) para que la página no se sienta vacía apenas la instalas —
 edítalas o bórralas cuando tengas tu contenido real.
+
+### Hero (slideshow) — cómo editarlo
+
+1. **Editor de temas** → haz clic en la sección "Hero (slideshow)" al inicio
+   de la portada.
+2. En el panel izquierdo verás cada **"Diapositiva"** como un bloque: haz
+   clic en "Agregar bloque" para sumar una nueva, arrastra para reordenar, o
+   bórrala con el ícono de basura — igual que cualquier otro bloque de
+   Shopify, sin tocar código.
+3. Cada diapositiva tiene su propia imagen, texto pequeño superior, título,
+   descripción y botón.
+4. En la configuración de la sección (no de la diapositiva) puedes apagar el
+   avance automático, ajustar su velocidad, y mostrar/ocultar flechas y
+   puntos.
+
+### Productos (con carrito) — cómo funciona
+
+- Elige una **colección** real en la configuración de la sección; mientras
+  no elijas una, muestra productos de muestra marcados como "Muestra".
+- Cada tarjeta agrega al carrito con AJAX (sin recargar la página) usando la
+  primera variante disponible del producto.
+- Si el producto tiene varias variantes (tallas, colores, etc.), el botón
+  cambia automáticamente a "Elegir opciones" y lleva a la página del
+  producto, para evitar agregar la variante equivocada.
+- Si el producto está agotado, el botón se deshabilita y dice "Agotado".
 
 ### Página de Contacto
 
